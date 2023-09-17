@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"graph/pkg/graph"
 )
 
@@ -9,6 +8,10 @@ func main() {
 	g := &graph.Graph{}
 	g.AddVertex("A")
 	g.AddVertex("B")
+	g.AddVertex("C")
+	g.AddVertex("D")
+	g.AddVertex("E")
+	g.AddVertex("F")
 
-	fmt.Println(g)
+	g.Print()
 }
