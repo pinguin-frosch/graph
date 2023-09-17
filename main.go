@@ -32,4 +32,6 @@ func main() {
 	g.AddEdge("F", "C")
 
 	g.Print()
+
+	g.WalkFrom("A")
 }
