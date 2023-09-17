@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"graph/pkg/graph"
+)
 
 func main() {
-    fmt.Println("City Walk")
+	g := &graph.Graph{}
+	g.AddVertex("A")
+	g.AddVertex("B")
+
+	fmt.Println(g)
 }
