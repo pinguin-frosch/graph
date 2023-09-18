@@ -20,5 +20,5 @@ func main() {
 	g.AddEdge("C", "F")
 	g.AddEdge("E", "F")
 
-	g.Print()
+	g.WalkFrom("A")
 }
