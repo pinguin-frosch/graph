@@ -7,33 +7,33 @@ import (
 )
 
 type Graph struct {
-	vertices     []*Vertex
-	edges        []*Edge
-	walkSequence []string
-	usedEdges    uint
-	totalEdges   uint
+	vertices   []*Vertex
+	edges      []*Edge
+	usedEdges  uint
+	totalEdges uint
 }
 
 const DEBUG = true
 
-func (g *Graph) WalkFrom(from string) error {
+func (g *Graph) WalkFrom(from string) ([]string, error) {
+	sequence := make([]string, 0)
 	vertex := g.GetVertex(from)
 	if vertex == nil {
-		return errors.New("The starting vertex does not exist!")
+		return nil, errors.New("The starting vertex does not exist!")
 	}
-	g.walkSequence = append(g.walkSequence, vertex.key)
+	sequence = append(sequence, vertex.key)
 
 	for !g.IsTraversed() {
 
 		if DEBUG {
-			fmt.Printf("Sequence: %v\n", g.walkSequence)
+			fmt.Printf("Sequence: %v\n", sequence)
 		}
 
 		// Find all the edges that start from the current vertex
 		edges, minimum := g.GetEdges(vertex.key)
 
 		if len(edges) == 0 {
-			return errors.New(fmt.Sprintf("There's nowhere to go from vertex %v\n", vertex.key))
+			return nil, errors.New(fmt.Sprintf("There's nowhere to go from vertex %v\n", vertex.key))
 		}
 
 		for _, edge := range edges {
@@ -48,7 +48,7 @@ func (g *Graph) WalkFrom(from string) error {
 			// Get the other edge
 			otherEdge := g.GetEdge(edge.to.key, edge.from.key)
 			if otherEdge == nil {
-				return errors.New(fmt.Sprintf("Couldn't find the other edge, from %v to %v", edge.to.key, edge.from.key))
+				return nil, errors.New(fmt.Sprintf("Couldn't find the other edge, from %v to %v", edge.to.key, edge.from.key))
 			}
 
 			// Only count unused edges
@@ -60,15 +60,14 @@ func (g *Graph) WalkFrom(from string) error {
 			otherEdge.visitCount++
 			edge.visitCount++
 
-			g.walkSequence = append(g.walkSequence, edge.to.key)
+			sequence = append(sequence, edge.to.key)
 			vertex = edge.to
 			break
 		}
 
 	}
 
-	fmt.Printf("One walking sequence is %v\n", g.walkSequence)
-	return nil
+	return sequence, nil
 }
 
 func (g *Graph) IsTraversed() bool {

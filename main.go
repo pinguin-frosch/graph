@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"graph/pkg/graph"
 	"log"
 )
@@ -10,5 +11,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	g.Print()
+	sequence, err := g.WalkFrom("A")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("Sequence: %v\n", sequence)
 }
