@@ -10,6 +10,8 @@ type Graph struct {
 	vertices     []*Vertex
 	edges        []*Edge
 	walkSequence []string
+	usedEdges    uint
+	totalEdges   uint
 }
 
 const DEBUG = true
@@ -49,6 +51,11 @@ func (g *Graph) WalkFrom(from string) error {
 				return errors.New(fmt.Sprintf("Couldn't find the other edge, from %v to %v", edge.to.key, edge.from.key))
 			}
 
+			// Only count unused edges
+			if edge.visitCount == 0 {
+				g.usedEdges++
+			}
+
 			// Mark both edges as used once
 			otherEdge.visitCount++
 			edge.visitCount++
@@ -65,20 +72,7 @@ func (g *Graph) WalkFrom(from string) error {
 }
 
 func (g *Graph) IsTraversed() bool {
-	ok := true
-	for _, e := range g.edges {
-		if DEBUG {
-			fmt.Printf("%v<->%v : %v\n", e.from.key, e.to.key, e.visitCount > 0)
-		}
-		if e.visitCount == 0 {
-			if DEBUG {
-				ok = false
-			} else {
-				return false
-			}
-		}
-	}
-	return ok
+	return g.usedEdges >= g.totalEdges
 }
 
 func (g *Graph) AddEdge(from, to string) error {
@@ -98,6 +92,10 @@ func (g *Graph) AddEdge(from, to string) error {
 		from: t,
 		to:   f,
 	})
+
+	// Since both edges count as one we only increment by one
+	g.totalEdges++
+
 	return nil
 }
 
