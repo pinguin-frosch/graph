@@ -142,7 +142,11 @@ func (g *Graph) Print() {
 			fmt.Printf("%v: ", v.key)
 			edges, _ := g.GetEdges(v.key)
 			for _, e := range edges {
-				fmt.Printf("%v ", e.to.key)
+				fmt.Printf("%v", e.to.key)
+				if e.deadEnd {
+					fmt.Printf("*")
+				}
+				fmt.Printf(" ")
 			}
 			fmt.Println()
 		}
@@ -156,5 +160,6 @@ type Vertex struct {
 type Edge struct {
 	from       *Vertex
 	to         *Vertex
+	deadEnd    bool
 	visitCount uint
 }

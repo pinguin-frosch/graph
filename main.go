@@ -11,6 +11,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	g.Print()
 	sequence, err := g.WalkFrom("A")
 	if err != nil {
 		log.Fatal(err)
