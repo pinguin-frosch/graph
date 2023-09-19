@@ -9,9 +9,10 @@ import (
 type Graph struct {
 	vertices     []*Vertex
 	edges        []*Edge
-	walkedEdges  uint
 	walkSequence []string
 }
+
+const DEBUG = true
 
 func (g *Graph) WalkFrom(from string) error {
 	vertex := g.GetVertex(from)
@@ -20,33 +21,41 @@ func (g *Graph) WalkFrom(from string) error {
 	}
 	g.walkSequence = append(g.walkSequence, vertex.key)
 
-	for g.walkedEdges != uint(len(g.edges)) {
-		// Find the from that start from vertex
-		from, mFrom := g.GetEdgesFrom(vertex.key)
-		to, mTo := g.GetEdgesTo(vertex.key)
+	for !g.IsTraversed() {
 
-		if len(from) == 0 && len(to) == 0 {
+		if DEBUG {
+			fmt.Printf("Sequence: %v\n", g.walkSequence)
+		}
+
+		// Find all the edges that start from the current vertex
+		edges, minimum := g.GetEdges(vertex.key)
+
+		if len(edges) == 0 {
 			return errors.New(fmt.Sprintf("There's nowhere to go from vertex %v\n", vertex.key))
 		}
 
-		if len(from) != 0 && mFrom < mTo {
-			e := g.CheckEdges(from, mFrom)
-			if e == nil {
-				fmt.Println(e)
-				return errors.New("Received an invalid edge!")
+		for _, edge := range edges {
+			if edge.visitCount > minimum {
+				continue
 			}
-			g.walkSequence = append(g.walkSequence, e.to.key)
-			vertex = e.to
-			continue
-		} else if len(to) != 0 && mTo <= mFrom {
-			e := g.CheckEdges(to, mTo)
-			if e == nil {
-				fmt.Println(e)
-				return errors.New("Received an invalid edge!")
+
+			if DEBUG {
+				fmt.Printf("The selected vertex is %v\n", edge.to.key)
 			}
-			g.walkSequence = append(g.walkSequence, e.from.key)
-			vertex = e.from
-			continue
+
+			// Get the other edge
+			otherEdge := g.GetEdge(edge.to.key, edge.from.key)
+			if otherEdge == nil {
+				return errors.New(fmt.Sprintf("Couldn't find the other edge, from %v to %v", edge.to.key, edge.from.key))
+			}
+
+			// Mark both edges as used once
+			otherEdge.visitCount++
+			edge.visitCount++
+
+			g.walkSequence = append(g.walkSequence, edge.to.key)
+			vertex = edge.to
+			break
 		}
 
 	}
@@ -55,20 +64,21 @@ func (g *Graph) WalkFrom(from string) error {
 	return nil
 }
 
-func (g *Graph) CheckEdges(edges []*Edge, minimum uint) *Edge {
-	// Walk to any of the least used
-	for _, e := range edges {
-		if e.visitCount != minimum {
-			continue
+func (g *Graph) IsTraversed() bool {
+	ok := true
+	for _, e := range g.edges {
+		if DEBUG {
+			fmt.Printf("%v<->%v : %v\n", e.from.key, e.to.key, e.visitCount > 0)
 		}
 		if e.visitCount == 0 {
-			g.walkedEdges++
+			if DEBUG {
+				ok = false
+			} else {
+				return false
+			}
 		}
-		e.visitCount++
-		return e
 	}
-
-	return nil
+	return ok
 }
 
 func (g *Graph) AddEdge(from, to string) error {
@@ -118,6 +128,14 @@ func (g *Graph) GetEdges(key string) ([]*Edge, uint) {
 			}
 			edges = append(edges, e)
 		}
+	}
+
+	if DEBUG {
+		fmt.Printf("The neighbors for %v are: ", key)
+		for _, e := range edges {
+			fmt.Printf("%v ", e.to.key)
+		}
+		fmt.Println()
 	}
 
 	return edges, m
