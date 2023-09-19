@@ -22,38 +22,29 @@ func (g *Graph) WalkFrom(from string) ([]string, error) {
 	sequence = append(sequence, vertex.key)
 
 	for !g.IsTraversed() {
-		// Find all the edges that start from the current vertex
-		edges, minimum := g.GetEdges(vertex.key)
-
-		if len(edges) == 0 {
-			return nil, errors.New(fmt.Sprintf("There's nowhere to go from vertex %v\n", vertex.key))
+		// Get the next edge to use
+		edge := g.GetNextEdge(vertex.key)
+		if edge == nil {
+			return nil, errors.New("Received an invalid edge")
 		}
 
-		for _, edge := range edges {
-			if edge.visitCount > minimum {
-				continue
-			}
-
-			// Get the other edge
-			otherEdge := g.GetEdge(edge.to.key, edge.from.key)
-			if otherEdge == nil {
-				return nil, errors.New(fmt.Sprintf("Couldn't find the other edge, from %v to %v", edge.to.key, edge.from.key))
-			}
-
-			// Only count unused edges
-			if edge.visitCount == 0 {
-				g.usedEdges++
-			}
-
-			// Mark both edges as used once
-			otherEdge.visitCount++
-			edge.visitCount++
-
-			sequence = append(sequence, edge.to.key)
-			vertex = edge.to
-			break
+		// Get the other edge
+		otherEdge := g.GetEdge(edge.to.key, edge.from.key)
+		if otherEdge == nil {
+			return nil, errors.New(fmt.Sprintf("Couldn't find the other edge, from %v to %v", edge.to.key, edge.from.key))
 		}
 
+		// Only count unused edges
+		if edge.visitCount == 0 {
+			g.usedEdges++
+		}
+
+		// Mark both edges as used once
+		otherEdge.visitCount++
+		edge.visitCount++
+
+		sequence = append(sequence, edge.to.key)
+		vertex = edge.to
 	}
 
 	return sequence, nil
@@ -101,22 +92,73 @@ func (g *Graph) GetEdge(from, to string) *Edge {
 	return nil
 }
 
-// Returns all the edges from a certain vertex and the least any edge has been used
-func (g *Graph) GetEdges(key string) ([]*Edge, uint) {
-	var m uint = math.MaxUint
+// Returns all the edges from a certain vertex, the least any edge has been
+// used and wether there's a dead end edge. This is not supposed to be used
+// directly.
+func (g *Graph) GetEdges(key string) ([]*Edge, uint, uint, int) {
+	var minimum uint = math.MaxUint
+	var minimumDeadEnd uint = math.MaxUint
+	deadEndCount := 0
 	edges := make([]*Edge, 0)
 
-	// Get the minimum any edge has been used
+	// Compute all the required information
 	for _, e := range g.edges {
 		if e.from.key == key {
-			if e.visitCount < m {
-				m = e.visitCount
+			switch e.deadEnd {
+			case true:
+				deadEndCount++
+				if e.visitCount < minimumDeadEnd {
+					minimumDeadEnd = e.visitCount
+				}
+			case false:
+				if e.visitCount < minimum {
+					minimum = e.visitCount
+				}
 			}
 			edges = append(edges, e)
 		}
 	}
 
-	return edges, m
+	return edges, minimum, minimumDeadEnd, deadEndCount
+}
+
+// Returns the next edge to use in the search algorithm
+func (g *Graph) GetNextEdge(key string) *Edge {
+	edges, minimum, minimumDeadEnd, deadEndCount := g.GetEdges(key)
+
+	if deadEndCount == 1 {
+		for _, e := range edges {
+			if !e.deadEnd {
+				continue
+			}
+			if e.visitCount < 2 {
+				return e
+			}
+		}
+	} else if deadEndCount > 1 {
+		for _, e := range edges {
+			if !e.deadEnd {
+				continue
+			}
+			if e.visitCount > minimumDeadEnd {
+				continue
+			}
+			if e.visitCount < 2 {
+				return e
+			}
+		}
+	}
+	for _, e := range edges {
+		if e.deadEnd {
+			continue
+		}
+		if e.visitCount > minimum {
+			continue
+		}
+		return e
+	}
+
+	return nil
 }
 
 func (g *Graph) AddVertex(key string) error {
@@ -140,7 +182,7 @@ func (g *Graph) Print() {
 	if len(g.vertices) != 0 {
 		for _, v := range g.vertices {
 			fmt.Printf("%v: ", v.key)
-			edges, _ := g.GetEdges(v.key)
+			edges, _, _, _ := g.GetEdges(v.key)
 			for _, e := range edges {
 				fmt.Printf("%v", e.to.key)
 				if e.deadEnd {
