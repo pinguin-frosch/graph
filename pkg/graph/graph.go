@@ -13,8 +13,6 @@ type Graph struct {
 	totalEdges uint
 }
 
-const DEBUG = true
-
 func (g *Graph) WalkFrom(from string) ([]string, error) {
 	sequence := make([]string, 0)
 	vertex := g.GetVertex(from)
@@ -24,11 +22,6 @@ func (g *Graph) WalkFrom(from string) ([]string, error) {
 	sequence = append(sequence, vertex.key)
 
 	for !g.IsTraversed() {
-
-		if DEBUG {
-			fmt.Printf("Sequence: %v\n", sequence)
-		}
-
 		// Find all the edges that start from the current vertex
 		edges, minimum := g.GetEdges(vertex.key)
 
@@ -39,10 +32,6 @@ func (g *Graph) WalkFrom(from string) ([]string, error) {
 		for _, edge := range edges {
 			if edge.visitCount > minimum {
 				continue
-			}
-
-			if DEBUG {
-				fmt.Printf("The selected vertex is %v\n", edge.to.key)
 			}
 
 			// Get the other edge
@@ -125,14 +114,6 @@ func (g *Graph) GetEdges(key string) ([]*Edge, uint) {
 			}
 			edges = append(edges, e)
 		}
-	}
-
-	if DEBUG {
-		fmt.Printf("The neighbors for %v are: ", key)
-		for _, e := range edges {
-			fmt.Printf("%v ", e.to.key)
-		}
-		fmt.Println()
 	}
 
 	return edges, m
