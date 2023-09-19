@@ -84,6 +84,10 @@ func (g *Graph) AddEdge(from, to string) error {
 		from: f,
 		to:   t,
 	})
+	g.edges = append(g.edges, &Edge{
+		from: t,
+		to:   f,
+	})
 	return nil
 }
 
@@ -101,33 +105,21 @@ func (g *Graph) GetEdge(from, to string) *Edge {
 	return nil
 }
 
-// Returns all the edges from a certain vertex and the minimum value found
-func (g *Graph) GetEdgesFrom(from string) ([]*Edge, uint) {
+// Returns all the edges from a certain vertex and the least any edge has been used
+func (g *Graph) GetEdges(key string) ([]*Edge, uint) {
 	var m uint = math.MaxUint
 	edges := make([]*Edge, 0)
-	for _, e := range g.edges {
-		if e.from.key == from {
-			if e.visitCount < m {
-				m = e.visitCount
-			}
-			edges = append(edges, e)
-		}
-	}
-	return edges, m
-}
 
-// Returns all the edges to a certain vertex and the minimum value found
-func (g *Graph) GetEdgesTo(to string) ([]*Edge, uint) {
-	var m uint = math.MaxUint
-	edges := make([]*Edge, 0)
+	// Get the minimum any edge has been used
 	for _, e := range g.edges {
-		if e.to.key == to {
+		if e.from.key == key {
 			if e.visitCount < m {
 				m = e.visitCount
 			}
 			edges = append(edges, e)
 		}
 	}
+
 	return edges, m
 }
 
@@ -150,19 +142,14 @@ func (g *Graph) GetVertex(key string) *Vertex {
 
 func (g *Graph) Print() {
 	if len(g.vertices) != 0 {
-		fmt.Println("Vertices")
 		for _, v := range g.vertices {
-			fmt.Printf("%v ", v.key)
+			fmt.Printf("%v: ", v.key)
+			edges, _ := g.GetEdges(v.key)
+			for _, e := range edges {
+				fmt.Printf("%v ", e.to.key)
+			}
+			fmt.Println()
 		}
-		fmt.Println()
-	}
-	if len(g.edges) != 0 {
-		fmt.Println("\nEdges")
-		fmt.Printf("| ")
-		for _, e := range g.edges {
-			fmt.Printf("%v<->%v | ", e.from.key, e.to.key)
-		}
-		fmt.Println()
 	}
 }
 

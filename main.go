@@ -11,5 +11,4 @@ func main() {
 		log.Fatal(err)
 	}
 	g.Print()
-	g.WalkFrom("A")
 }
