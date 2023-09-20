@@ -12,7 +12,7 @@ func main() {
 		log.Fatal(err)
 	}
 	g.Print()
-	sequence, err := g.WalkFrom("W")
+	sequence, err := g.WalkFrom("A")
 	if err != nil {
 		log.Fatal(err)
 	}

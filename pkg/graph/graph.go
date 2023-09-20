@@ -23,7 +23,7 @@ func (g *Graph) WalkFrom(from string) ([]string, error) {
 
 	for !g.IsTraversed() {
 		// Get the next edge to use
-		edge := g.GetNextEdge(vertex.key)
+		edge, unique := g.GetNextEdge(vertex.key)
 		if edge == nil {
 			return nil, errors.New("Received an invalid edge")
 		}
@@ -39,9 +39,14 @@ func (g *Graph) WalkFrom(from string) ([]string, error) {
 			g.usedEdges++
 		}
 
-		// Mark both edges as used once
-		otherEdge.visitCount++
-		edge.visitCount++
+		// Update usage, if it was the only option increase by two because it's a dead end
+		if unique && edge.visitCount == 0 {
+			otherEdge.visitCount += 2
+			edge.visitCount += 2
+		} else {
+			otherEdge.visitCount += 1
+			edge.visitCount += 1
+		}
 
 		sequence = append(sequence, edge.to.key)
 		vertex = edge.to
@@ -104,6 +109,7 @@ func (g *Graph) GetEdges(key string) ([]*Edge, uint, uint, int) {
 	// Compute all the required information
 	for _, e := range g.edges {
 		if e.from.key == key {
+			fmt.Printf("%v<->%v: %v\n", e.from.key, e.to.key, e.visitCount)
 			switch e.deadEnd {
 			case true:
 				deadEndCount++
@@ -122,9 +128,10 @@ func (g *Graph) GetEdges(key string) ([]*Edge, uint, uint, int) {
 	return edges, minimum, minimumDeadEnd, deadEndCount
 }
 
-// Returns the next edge to use in the search algorithm
-func (g *Graph) GetNextEdge(key string) *Edge {
+// Returns the next edge to use in the search algorithm and wether it was the only one found
+func (g *Graph) GetNextEdge(key string) (*Edge, bool) {
 	edges, minimum, minimumDeadEnd, deadEndCount := g.GetEdges(key)
+	unique := len(edges) == 1
 
 	if deadEndCount == 1 {
 		for _, e := range edges {
@@ -132,7 +139,7 @@ func (g *Graph) GetNextEdge(key string) *Edge {
 				continue
 			}
 			if e.visitCount < 2 {
-				return e
+				return e, unique
 			}
 		}
 	} else if deadEndCount > 1 {
@@ -144,7 +151,7 @@ func (g *Graph) GetNextEdge(key string) *Edge {
 				continue
 			}
 			if e.visitCount < 2 {
-				return e
+				return e, unique
 			}
 		}
 	}
@@ -155,10 +162,10 @@ func (g *Graph) GetNextEdge(key string) *Edge {
 		if e.visitCount > minimum {
 			continue
 		}
-		return e
+		return e, unique
 	}
 
-	return nil
+	return nil, unique
 }
 
 func (g *Graph) AddVertex(key string) error {
