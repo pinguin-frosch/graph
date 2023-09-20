@@ -18,7 +18,31 @@ type Graph struct {
 	totalEdges uint
 }
 
+func (g *Graph) GetShortestWalk() ([]string, error) {
+	var shortest int = math.MaxInt
+	var shortestSequence []string
+	for _, v := range g.vertices {
+		sequence, err := g.WalkFrom(v.key)
+		if err != nil {
+			return nil, err
+		}
+		if len(sequence) < shortest {
+			shortest = len(sequence)
+			shortestSequence = sequence
+		}
+	}
+	return shortestSequence, nil
+}
+
+func (g *Graph) resetState() {
+	g.usedEdges = 0
+	for _, e := range g.edges {
+		e.visitCount = 0
+	}
+}
+
 func (g *Graph) WalkFrom(from string) ([]string, error) {
+	g.resetState()
 	sequence := make([]string, 0)
 	vertex := g.GetVertex(from)
 	if vertex == nil {

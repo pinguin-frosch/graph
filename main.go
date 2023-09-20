@@ -11,10 +11,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	g.Print()
-	sequence, err := g.WalkFrom("et")
+	sequence, err := g.GetShortestWalk()
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("Sequence: %v\n", sequence)
+	fmt.Printf("Sequence (%v): %v\n", len(sequence), sequence)
 }
