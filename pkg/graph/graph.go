@@ -6,6 +6,11 @@ import (
 	"math"
 )
 
+const (
+	RepeatedVertex = "That vertex already exists!"
+	RepeatedEdge   = "That edge already exists!"
+)
+
 type Graph struct {
 	vertices   []*Vertex
 	edges      []*Edge
@@ -66,7 +71,7 @@ func (g *Graph) AddEdge(from, to string) error {
 		return errors.New(fmt.Sprintf("Cannot create edge between %v and %v!\n", from, to))
 	}
 	if g.GetEdge(from, to) != nil || g.GetEdge(to, from) != nil {
-		return errors.New("That edge already exists!")
+		return errors.New(RepeatedEdge)
 	}
 	g.edges = append(g.edges, &Edge{
 		from: f,
@@ -109,7 +114,6 @@ func (g *Graph) GetEdges(key string) ([]*Edge, uint, uint, int) {
 	// Compute all the required information
 	for _, e := range g.edges {
 		if e.from.key == key {
-			fmt.Printf("%v<->%v: %v\n", e.from.key, e.to.key, e.visitCount)
 			switch e.deadEnd {
 			case true:
 				deadEndCount++
@@ -170,7 +174,7 @@ func (g *Graph) GetNextEdge(key string) (*Edge, bool) {
 
 func (g *Graph) AddVertex(key string) error {
 	if g.GetVertex(key) != nil {
-		return errors.New("That vertex already exists!")
+		return errors.New(RepeatedVertex)
 	}
 	g.vertices = append(g.vertices, &Vertex{key: key})
 	return nil

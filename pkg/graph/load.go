@@ -8,11 +8,7 @@ import (
 	"strings"
 )
 
-type GraphFile struct {
-	Vertices []string `json:"vertices"`
-	// [0] = From, [1] = To, [2] = DeadEnd
-	Edges []string `json:"edges"`
-}
+type GraphFile []string
 
 func LoadFromJson(filename string) (*Graph, error) {
 	bytes, err := os.ReadFile(filename)
@@ -25,37 +21,40 @@ func LoadFromJson(filename string) (*Graph, error) {
 		return nil, err
 	}
 	g := Graph{}
-	for _, v := range file.Vertices {
-		err := g.AddVertex(v)
-		if err != nil {
-			return nil, err
-		}
-	}
-	for _, e := range file.Edges {
+	for _, e := range file {
 		parts := strings.Split(e, "|")
-		if len(parts) < 2 {
+		if len(parts) != 2 {
 			return nil, errors.New(fmt.Sprintf("Invalid edge: %v", e))
 		}
 		from := parts[0]
-		to := parts[1]
-
-		err := g.AddEdge(from, to)
-		if err != nil {
+		err := g.AddVertex(from)
+		if err != nil && err.Error() != RepeatedVertex {
 			return nil, err
 		}
-
-		// Set the edges as dead ends
-		if len(parts) >= 3 {
-			edge := g.GetEdge(from, to)
-			if edge == nil {
-				return nil, errors.New(fmt.Sprintf("Couldn't get edge %v<->%v\n", from, to))
+		tos := strings.Split(parts[1], ".")
+		for _, to := range tos {
+			deadEnd := false
+			if strings.HasSuffix(to, "*") {
+				to = strings.TrimSuffix(to, "*")
+				deadEnd = true
 			}
-			edge.deadEnd = true
-			otherEdge := g.GetEdge(to, from)
-			if otherEdge == nil {
-				return nil, errors.New(fmt.Sprintf("Couldn't get edge %v<->%v\n", to, from))
+			err := g.AddVertex(to)
+			if err != nil && err.Error() != RepeatedVertex {
+				return nil, err
 			}
-			otherEdge.deadEnd = true
+			err = g.AddEdge(from, to)
+			if err != nil && err.Error() != RepeatedEdge {
+				return nil, err
+			}
+			if deadEnd {
+				f := g.GetEdge(from, to)
+				t := g.GetEdge(to, from)
+				if f == nil || t == nil {
+					return nil, errors.New(fmt.Sprintf("Couldn't get the edges %v<->%v", from, to))
+				}
+				f.deadEnd = true
+				t.deadEnd = true
+			}
 		}
 	}
 	return &g, nil
