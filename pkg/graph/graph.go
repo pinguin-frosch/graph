@@ -12,8 +12,8 @@ const (
 )
 
 type Graph struct {
-	Vertices  []string `json:"vertices"`
-	Edges     []*Edge  `json:"edges"`
+	Vertices []string `json:"vertices"`
+	Edges    []*Edge  `json:"edges"`
 }
 
 func (g *Graph) GetTotalEdges() uint {
@@ -31,20 +31,22 @@ func (g *Graph) GetTotalEdges() uint {
 	return total
 }
 
-func (g *Graph) GetShortestWalk() ([]string, error) {
+func (g *Graph) GetShortestWalk() ([]string, uint, error) {
 	var shortest int = math.MaxInt
 	var shortestSequence []string
+	var totalDistance uint
 	for _, v := range g.Vertices {
-		sequence, err := g.WalkFrom(v)
+		sequence, distance, err := g.WalkFrom(v)
 		if err != nil {
-			return nil, err
+			return nil, distance, err
 		}
 		if len(sequence) < shortest {
 			shortest = len(sequence)
+			totalDistance = distance
 			shortestSequence = sequence
 		}
 	}
-	return shortestSequence, nil
+	return shortestSequence, totalDistance, nil
 }
 
 func (g *Graph) resetState() {
@@ -53,14 +55,15 @@ func (g *Graph) resetState() {
 	}
 }
 
-func (g *Graph) WalkFrom(from string) ([]string, error) {
+func (g *Graph) WalkFrom(from string) ([]string, uint, error) {
 	totalEdges := g.GetTotalEdges()
 	var usedEdges uint = 0
+	var distance uint = 0
 	g.resetState()
 	sequence := make([]string, 0)
 	vertex := g.GetVertex(from)
 	if vertex == "" {
-		return nil, errors.New("The starting vertex does not exist!")
+		return nil, distance, errors.New("The starting vertex does not exist!")
 	}
 	sequence = append(sequence, vertex)
 
@@ -68,13 +71,13 @@ func (g *Graph) WalkFrom(from string) ([]string, error) {
 		// Get the next edge to use
 		edge, unique := g.GetNextEdge(vertex)
 		if edge == nil {
-			return nil, errors.New("Received an invalid edge")
+			return nil, distance, errors.New("Received an invalid edge")
 		}
 
 		// Get the other edge
 		otherEdge := g.GetEdge(edge.To, edge.From)
 		if otherEdge == nil {
-			return nil, errors.New(fmt.Sprintf("Couldn't find the other edge, from %v to %v", edge.To, edge.From))
+			return nil, distance, errors.New(fmt.Sprintf("Couldn't find the other edge, from %v to %v", edge.To, edge.From))
 		}
 
 		// Only count unused edges
@@ -91,11 +94,13 @@ func (g *Graph) WalkFrom(from string) ([]string, error) {
 			edge.visitCount += 1
 		}
 
+		distance += edge.Weight
+
 		sequence = append(sequence, edge.To)
 		vertex = edge.To
 	}
 
-	return sequence, nil
+	return sequence, distance, nil
 }
 
 func (g *Graph) AddEdge(from, to string) error {

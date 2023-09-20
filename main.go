@@ -12,9 +12,9 @@ func main() {
 		log.Fatal(err)
 	}
 	g.Print()
-	sequence, err := g.GetShortestWalk()
+	sequence, distance, err := g.GetShortestWalk()
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("Sequence (%v): %v\n", len(sequence), sequence)
+	fmt.Printf("Sequence (%v steps, %v m): %v\n", len(sequence), distance, sequence)
 }
