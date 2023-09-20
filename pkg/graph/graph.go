@@ -12,10 +12,23 @@ const (
 )
 
 type Graph struct {
-	Vertices   []string `json:"vertices"`
-	Edges      []*Edge  `json:"edges"`
-	TotalEdges uint     `json:"total_edges"`
-	usedEdges  uint
+	Vertices  []string `json:"vertices"`
+	Edges     []*Edge  `json:"edges"`
+}
+
+func (g *Graph) GetTotalEdges() uint {
+	var total uint = 0
+	matrix := make(map[string]bool)
+	for _, e := range g.Edges {
+		key := fmt.Sprintf("%v|%v", e.From, e.To)
+		otherKey := fmt.Sprintf("%v|%v", e.To, e.From)
+		if !matrix[key] && !matrix[otherKey] {
+			total += 1
+			matrix[key] = true
+			matrix[otherKey] = true
+		}
+	}
+	return total
 }
 
 func (g *Graph) GetShortestWalk() ([]string, error) {
@@ -35,13 +48,14 @@ func (g *Graph) GetShortestWalk() ([]string, error) {
 }
 
 func (g *Graph) resetState() {
-	g.usedEdges = 0
 	for _, e := range g.Edges {
 		e.visitCount = 0
 	}
 }
 
 func (g *Graph) WalkFrom(from string) ([]string, error) {
+	totalEdges := g.GetTotalEdges()
+	var usedEdges uint = 0
 	g.resetState()
 	sequence := make([]string, 0)
 	vertex := g.GetVertex(from)
@@ -50,7 +64,7 @@ func (g *Graph) WalkFrom(from string) ([]string, error) {
 	}
 	sequence = append(sequence, vertex)
 
-	for !g.IsTraversed() {
+	for usedEdges < totalEdges {
 		// Get the next edge to use
 		edge, unique := g.GetNextEdge(vertex)
 		if edge == nil {
@@ -65,7 +79,7 @@ func (g *Graph) WalkFrom(from string) ([]string, error) {
 
 		// Only count unused edges
 		if edge.visitCount == 0 {
-			g.usedEdges++
+			usedEdges++
 		}
 
 		// Update usage, if it was the only option increase by two because it's a dead end
@@ -82,10 +96,6 @@ func (g *Graph) WalkFrom(from string) ([]string, error) {
 	}
 
 	return sequence, nil
-}
-
-func (g *Graph) IsTraversed() bool {
-	return g.usedEdges >= g.TotalEdges
 }
 
 func (g *Graph) AddEdge(from, to string) error {
@@ -105,10 +115,6 @@ func (g *Graph) AddEdge(from, to string) error {
 		From: t,
 		To:   f,
 	})
-
-	// Since both edges count as one we only increment by one
-	g.TotalEdges++
-	fmt.Println(g.TotalEdges)
 
 	return nil
 }

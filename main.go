@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	g, err := graph.NewFromFile("graph2.json")
+	g, err := graph.NewFromFile("graph.json")
 	if err != nil {
 		log.Fatal(err)
 	}
