@@ -48,12 +48,10 @@ func LoadFromJson(filename string) (*Graph, error) {
 			}
 			if deadEnd {
 				f := g.GetEdge(from, to)
-				t := g.GetEdge(to, from)
-				if f == nil || t == nil {
-					return nil, errors.New(fmt.Sprintf("Couldn't get the edges %v<->%v", from, to))
+				if f == nil {
+					return nil, errors.New(fmt.Sprintf("Couldn't get the edge %v<->%v", from, to))
 				}
 				f.deadEnd = true
-				t.deadEnd = true
 			}
 		}
 	}
