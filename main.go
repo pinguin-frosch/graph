@@ -7,10 +7,11 @@ import (
 )
 
 func main() {
-	g, err := graph.LoadFromJson("graph.json")
+	g, err := graph.NewFromFile("graph2.json")
 	if err != nil {
 		log.Fatal(err)
 	}
+	g.Print()
 	sequence, err := g.GetShortestWalk()
 	if err != nil {
 		log.Fatal(err)

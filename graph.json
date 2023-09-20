@@ -1,225 +1,4010 @@
-[
-    "aa|z.ab*.ag",
-    "ab|aa",
-    "ac|g*.z.ad",
-    "ad|ac.ae*.af",
-    "ae|ad*",
-    "af|ad.ag.aj",
-    "ag|aa.af.ah.ak",
-    "ah|u.ag.ai*",
-    "ai|ah",
-    "aj|af.ak.ee.gv",
-    "ak|aj.ag.al.ck",
-    "al|ak.cj.am",
-    "am|al.an*.ao",
-    "an|am",
-    "ao|am.ap.t",
-    "ap|ao.r.aq",
-    "aq|ch.ap.p.ar",
-    "ar|cf.aq.n.as",
-    "as|ce.ar.l.at",
-    "at|cc.as.j.au",
-    "au|ca.at.h.av",
-    "av|bx.au.f.aw",
-    "aw|ax*.av.ha",
-    "ax|aw*",
-    "ay|bb.ha.ba",
-    "az|ba.ha.e",
-    "a|b.gz.hb",
-    "ba|bg.ay.az",
-    "bb|bd.bc*.ay",
-    "bc|bb*",
-    "bd|bf.be*.bb",
-    "be|bd*",
-    "bf|bs*.bv.bd.bg",
-    "bg|bf.ba.bh",
-    "bh|bk.bg.bi",
-    "bi|bh.d.bj",
-    "bj|bk.bi.c.hh",
-    "bk|bl.bh.bj",
-    "bl|gz.bk.bm",
-    "bm|bl.bn*.hh",
-    "bn|bm",
-    "bo|hh.bq.bp*",
-    "bp|bo",
-    "bq|bo.b.br*",
-    "br|bq",
-    "bs|bu*.bt*.bf",
-    "bt|bs",
-    "bu|bs",
-    "bv|cs.bz.bw.bf",
-    "bw|bv.by*.bx",
-    "bx|bw.ca.av",
-    "by|bw*",
-    "bz|cb.ca.bv",
-    "b|bq.c.a",
-    "ca|bz.cc.au.bx",
-    "cb|cd.cc.bz",
-    "cc|cb.ce.at.ca",
-    "cd|cn.cg.ce.cb",
-    "ce|cd.cf.as.cc",
-    "cf|cg.ch.ar.ce",
-    "cg|cm.ci.cf.cd",
-    "ch|ci.aq.cf",
-    "ci|cl.cj.ch.cg",
-    "cj|ck.al.ci",
-    "ck|di.ak.cj.dh",
-    "cl|dh.ci.cm",
-    "cm|cl.cg.cx",
-    "cn|cx.cd.co",
-    "co|cv.cn.cp",
-    "cp|cu.co.cq",
-    "cq|cp.cr*.cs",
-    "cr|cq",
-    "cs|ct.cq.bv",
-    "ct|dd.cu.cs",
-    "cu|cv.cp.ct",
-    "cv|da.cz.co.cu",
-    "cw|cy*.cx.cz",
-    "cx|cw.cm.cn",
-    "cy|cw",
-    "cz|de.cw.cv",
-    "c|bj.d.b",
-    "da|dc.cv.db*",
-    "db|da",
-    "dc|df.da.gy",
-    "dd|dx.gr.ct.dl",
-    "de|df.dg.cz",
-    "df|gp.de.dc",
-    "dg|dj.q*.dh.de",
-    "dh|dg.ck.cl",
-    "di|dk.ee.ck",
-    "dj|dk.dg.gq",
-    "dk|di.dj",
-    "dl|dm.dd.gz",
-    "dm|dn.dl",
-    "dn|dp.do*.dm",
-    "do|dn",
-    "dp|dq.ed.dn",
-    "dq|dr.ed.dp",
-    "dr|ds.ec.dq",
-    "ds|dt.eb.dr",
-    "dt|du.ea.ds",
-    "du|dv.dz.dt",
-    "dv|dw.dy.du",
-    "dw|ef.dx.dv",
-    "dx|dw.dd.dy",
-    "dy|dv.dx.dz",
-    "dz|du.dy.ea",
-    "d|bi.e.c",
-    "ea|dt.dz.eb",
-    "eb|ds.ea.ec",
-    "ec|dr.eb.ed",
-    "ed|dq.ec.dp",
-    "ee|gv.aj.di",
-    "ef|el.eg.dw",
-    "eg|en.eh.ef",
-    "eh|eo.ei.eg",
-    "ei|ep.ej.eh",
-    "ej|eq.ek.ei",
-    "ek|ev.fr.fx.ej",
-    "el|em.ef",
-    "em|es.en.el",
-    "en|eo.eg.em",
-    "eo|ep.eh.en",
-    "ep|eq.ei.eo",
-    "eq|er.ej.ep",
-    "er|es.ew.et.eq",
-    "es|fa*.er.em",
-    "et|er.fo.eu",
-    "eu|et.fp.ev",
-    "ev|eu.fq.ek",
-    "ew|ex*.ey.er",
-    "ex|ew",
-    "ey|ez*.gw.ew",
-    "ez|ey",
-    "e|az.f.d",
-    "fa|es",
-    "fb|fc*.gx.gw",
-    "fc|fb",
-    "fd|fe*.ff.gx",
-    "fe|fd",
-    "ff|fg*.fh*.fd",
-    "fg|ff",
-    "fh|ff",
-    "fi|gx.fj*.fk",
-    "fj|fi",
-    "fk|fi.fl*.fm",
-    "fl|fk",
-    "fm|fk.fn*.fr.fq",
-    "fn|fm",
-    "fo|gw.et.fp",
-    "fp|fo.eu.fq",
-    "fq|fp.fm.ev",
-    "fr|fm.ek.fy",
-    "fs|ft",
-    "ft|fs*.fu.fv",
-    "fu|ft.gq.fv",
-    "fv|ft.fu.fw",
-    "fw|fv.gc.fy",
-    "fx|ek.gu.fz",
-    "fy|fr.fw.gu",
-    "fz|fx.gt.gb",
-    "f|av.h.i.e",
-    "ga|gm",
-    "gb|fz.gs.gd",
-    "gc|fw.gm.ge",
-    "gd|gb.ge.gf",
-    "ge|gs.gc.gg.gd",
-    "gf|gd.gg.gr",
-    "gg|ge.gi.gy.gf",
-    "gh|go*.gp.gi",
-    "gi|gl.gh.gg",
-    "gj|gl",
-    "gk|gm.gn*.gl",
-    "gl|gk.gj*.gi",
-    "gm|gc.ga*.gk",
-    "gn|gk",
-    "go|gh",
-    "gp|gh.gq.df",
-    "gq|fu.dj.gp",
-    "gr|gf.gy.dd",
-    "gs|gt.gb.ge",
-    "gt|gu.fz.gs",
-    "gu|fy.fx.gt",
-    "gv|ee.aj",
-    "gw|ey.fb.fo",
-    "gx|fb.fd.fi",
-    "gy|gg.dc.gr",
-    "gz|dl.bl.a",
-    "g|ac",
-    "ha|ay.aw.az",
-    "hb|he.hc.hd.a",
-    "hc|hg.hm.hi.hb",
-    "hd|hj.hk.hb",
-    "he|ho.hf.hb",
-    "hf|he.ho.hg",
-    "hg|hf.hn.hc",
-    "hh|bm.bj.bo",
-    "hi|hc.hl.hj",
-    "hj|hi.hk.hd",
-    "hk|hl.hj.hd",
-    "hl|hm.hi.hk",
-    "hm|hn.hl.hc",
-    "hn|ho.hm.hg",
-    "ho|he.hn.hf",
-    "h|au.j.i.f",
-    "i|f.h.k",
-    "j|at.l.k.h",
-    "k|i.j.m",
-    "l|as.n.m.j",
-    "m|k.l.o",
-    "n|ar.p.o.l",
-    "o|m.n.p",
-    "p|aq.r.n.o",
-    "q|dg",
-    "r|ap.t.s*.p",
-    "s|r",
-    "t|ao.u.r",
-    "u|ah.t.v",
-    "v|u.w",
-    "w|z.v.x",
-    "x|w.z.y*",
-    "y|x",
-    "z|w.x.aa.ac"
-]
+{
+  "vertices": [
+    "aa",
+    "z",
+    "ab",
+    "ag",
+    "ac",
+    "g",
+    "ad",
+    "ae",
+    "af",
+    "aj",
+    "ah",
+    "ak",
+    "u",
+    "ai",
+    "ee",
+    "gv",
+    "al",
+    "ck",
+    "cj",
+    "am",
+    "an",
+    "ao",
+    "ap",
+    "t",
+    "r",
+    "aq",
+    "ch",
+    "p",
+    "ar",
+    "cf",
+    "n",
+    "as",
+    "ce",
+    "l",
+    "at",
+    "cc",
+    "j",
+    "au",
+    "ca",
+    "h",
+    "av",
+    "bx",
+    "f",
+    "aw",
+    "ax",
+    "ha",
+    "ay",
+    "bb",
+    "ba",
+    "az",
+    "e",
+    "a",
+    "b",
+    "gz",
+    "hb",
+    "bg",
+    "bd",
+    "bc",
+    "bf",
+    "be",
+    "bs",
+    "bv",
+    "bh",
+    "bk",
+    "bi",
+    "d",
+    "bj",
+    "c",
+    "hh",
+    "bl",
+    "bm",
+    "bn",
+    "bo",
+    "bq",
+    "bp",
+    "br",
+    "bu",
+    "bt",
+    "cs",
+    "bz",
+    "bw",
+    "by",
+    "cb",
+    "cd",
+    "cn",
+    "cg",
+    "cm",
+    "ci",
+    "cl",
+    "di",
+    "dh",
+    "cx",
+    "co",
+    "cv",
+    "cp",
+    "cu",
+    "cq",
+    "cr",
+    "ct",
+    "dd",
+    "da",
+    "cz",
+    "cw",
+    "cy",
+    "de",
+    "dc",
+    "db",
+    "df",
+    "gy",
+    "dx",
+    "gr",
+    "dl",
+    "dg",
+    "gp",
+    "dj",
+    "q",
+    "dk",
+    "gq",
+    "dm",
+    "dn",
+    "dp",
+    "do",
+    "dq",
+    "ed",
+    "dr",
+    "ds",
+    "ec",
+    "dt",
+    "eb",
+    "du",
+    "ea",
+    "dv",
+    "dz",
+    "dw",
+    "dy",
+    "ef",
+    "el",
+    "eg",
+    "en",
+    "eh",
+    "eo",
+    "ei",
+    "ep",
+    "ej",
+    "eq",
+    "ek",
+    "ev",
+    "fr",
+    "fx",
+    "em",
+    "es",
+    "er",
+    "ew",
+    "et",
+    "fa",
+    "fo",
+    "eu",
+    "fp",
+    "fq",
+    "ex",
+    "ey",
+    "ez",
+    "gw",
+    "fb",
+    "fc",
+    "gx",
+    "fd",
+    "fe",
+    "ff",
+    "fg",
+    "fh",
+    "fi",
+    "fj",
+    "fk",
+    "fl",
+    "fm",
+    "fn",
+    "fy",
+    "fs",
+    "ft",
+    "fu",
+    "fv",
+    "fw",
+    "gc",
+    "gu",
+    "fz",
+    "gt",
+    "gb",
+    "i",
+    "ga",
+    "gm",
+    "gs",
+    "gd",
+    "ge",
+    "gf",
+    "gg",
+    "gi",
+    "gh",
+    "go",
+    "gl",
+    "gj",
+    "gk",
+    "gn",
+    "he",
+    "hc",
+    "hd",
+    "hg",
+    "hm",
+    "hi",
+    "hj",
+    "hk",
+    "ho",
+    "hf",
+    "hn",
+    "hl",
+    "k",
+    "m",
+    "o",
+    "s",
+    "v",
+    "w",
+    "x",
+    "y"
+  ],
+  "edges": [
+    {
+      "from": "aa",
+      "to": "z",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "z",
+      "to": "aa",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "aa",
+      "to": "ab",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "ab",
+      "to": "aa",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "aa",
+      "to": "ag",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ag",
+      "to": "aa",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ac",
+      "to": "g",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "g",
+      "to": "ac",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ac",
+      "to": "z",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "z",
+      "to": "ac",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ac",
+      "to": "ad",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ad",
+      "to": "ac",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ad",
+      "to": "ae",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "ae",
+      "to": "ad",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "ad",
+      "to": "af",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "af",
+      "to": "ad",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "af",
+      "to": "ag",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ag",
+      "to": "af",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "af",
+      "to": "aj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "aj",
+      "to": "af",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ag",
+      "to": "ah",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ah",
+      "to": "ag",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ag",
+      "to": "ak",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ak",
+      "to": "ag",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ah",
+      "to": "u",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "u",
+      "to": "ah",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ah",
+      "to": "ai",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "ai",
+      "to": "ah",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "aj",
+      "to": "ak",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ak",
+      "to": "aj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "aj",
+      "to": "ee",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ee",
+      "to": "aj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "aj",
+      "to": "gv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gv",
+      "to": "aj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ak",
+      "to": "al",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "al",
+      "to": "ak",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ak",
+      "to": "ck",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ck",
+      "to": "ak",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "al",
+      "to": "cj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cj",
+      "to": "al",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "al",
+      "to": "am",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "am",
+      "to": "al",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "am",
+      "to": "an",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "an",
+      "to": "am",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "am",
+      "to": "ao",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ao",
+      "to": "am",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ao",
+      "to": "ap",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ap",
+      "to": "ao",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ao",
+      "to": "t",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "t",
+      "to": "ao",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ap",
+      "to": "r",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "r",
+      "to": "ap",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ap",
+      "to": "aq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "aq",
+      "to": "ap",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "aq",
+      "to": "ch",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ch",
+      "to": "aq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "aq",
+      "to": "p",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "p",
+      "to": "aq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "aq",
+      "to": "ar",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ar",
+      "to": "aq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ar",
+      "to": "cf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cf",
+      "to": "ar",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ar",
+      "to": "n",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "n",
+      "to": "ar",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ar",
+      "to": "as",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "as",
+      "to": "ar",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "as",
+      "to": "ce",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ce",
+      "to": "as",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "as",
+      "to": "l",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "l",
+      "to": "as",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "as",
+      "to": "at",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "at",
+      "to": "as",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "at",
+      "to": "cc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cc",
+      "to": "at",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "at",
+      "to": "j",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "j",
+      "to": "at",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "at",
+      "to": "au",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "au",
+      "to": "at",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "au",
+      "to": "ca",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ca",
+      "to": "au",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "au",
+      "to": "h",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "h",
+      "to": "au",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "au",
+      "to": "av",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "av",
+      "to": "au",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "av",
+      "to": "bx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bx",
+      "to": "av",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "av",
+      "to": "f",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "f",
+      "to": "av",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "av",
+      "to": "aw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "aw",
+      "to": "av",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "aw",
+      "to": "ax",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "ax",
+      "to": "aw",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "aw",
+      "to": "ha",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ha",
+      "to": "aw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ay",
+      "to": "bb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bb",
+      "to": "ay",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ay",
+      "to": "ha",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ha",
+      "to": "ay",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ay",
+      "to": "ba",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ba",
+      "to": "ay",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "az",
+      "to": "ba",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ba",
+      "to": "az",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "az",
+      "to": "ha",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ha",
+      "to": "az",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "az",
+      "to": "e",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "e",
+      "to": "az",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "a",
+      "to": "b",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "b",
+      "to": "a",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "a",
+      "to": "gz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gz",
+      "to": "a",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "a",
+      "to": "hb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hb",
+      "to": "a",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ba",
+      "to": "bg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bg",
+      "to": "ba",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bb",
+      "to": "bd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bd",
+      "to": "bb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bb",
+      "to": "bc",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "bc",
+      "to": "bb",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "bd",
+      "to": "bf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bf",
+      "to": "bd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bd",
+      "to": "be",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "be",
+      "to": "bd",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "bf",
+      "to": "bs",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "bs",
+      "to": "bf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bf",
+      "to": "bv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bv",
+      "to": "bf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bf",
+      "to": "bg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bg",
+      "to": "bf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bg",
+      "to": "bh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bh",
+      "to": "bg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bh",
+      "to": "bk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bk",
+      "to": "bh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bh",
+      "to": "bi",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bi",
+      "to": "bh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bi",
+      "to": "d",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "d",
+      "to": "bi",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bi",
+      "to": "bj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bj",
+      "to": "bi",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bj",
+      "to": "bk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bk",
+      "to": "bj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bj",
+      "to": "c",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "c",
+      "to": "bj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bj",
+      "to": "hh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hh",
+      "to": "bj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bk",
+      "to": "bl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bl",
+      "to": "bk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bl",
+      "to": "gz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gz",
+      "to": "bl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bl",
+      "to": "bm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bm",
+      "to": "bl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bm",
+      "to": "bn",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "bn",
+      "to": "bm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bm",
+      "to": "hh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hh",
+      "to": "bm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bo",
+      "to": "hh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hh",
+      "to": "bo",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bo",
+      "to": "bq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bq",
+      "to": "bo",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bo",
+      "to": "bp",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "bp",
+      "to": "bo",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bq",
+      "to": "b",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "b",
+      "to": "bq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bq",
+      "to": "br",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "br",
+      "to": "bq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bs",
+      "to": "bu",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "bu",
+      "to": "bs",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bs",
+      "to": "bt",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "bt",
+      "to": "bs",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bv",
+      "to": "cs",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cs",
+      "to": "bv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bv",
+      "to": "bz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bz",
+      "to": "bv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bv",
+      "to": "bw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bw",
+      "to": "bv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bw",
+      "to": "by",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "by",
+      "to": "bw",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "bw",
+      "to": "bx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bx",
+      "to": "bw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bx",
+      "to": "ca",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ca",
+      "to": "bx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bz",
+      "to": "cb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cb",
+      "to": "bz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "bz",
+      "to": "ca",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ca",
+      "to": "bz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "b",
+      "to": "c",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "c",
+      "to": "b",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ca",
+      "to": "cc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cc",
+      "to": "ca",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cb",
+      "to": "cd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cd",
+      "to": "cb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cb",
+      "to": "cc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cc",
+      "to": "cb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cc",
+      "to": "ce",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ce",
+      "to": "cc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cd",
+      "to": "cn",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cn",
+      "to": "cd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cd",
+      "to": "cg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cg",
+      "to": "cd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cd",
+      "to": "ce",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ce",
+      "to": "cd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ce",
+      "to": "cf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cf",
+      "to": "ce",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cf",
+      "to": "cg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cg",
+      "to": "cf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cf",
+      "to": "ch",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ch",
+      "to": "cf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cg",
+      "to": "cm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cm",
+      "to": "cg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cg",
+      "to": "ci",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ci",
+      "to": "cg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ch",
+      "to": "ci",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ci",
+      "to": "ch",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ci",
+      "to": "cl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cl",
+      "to": "ci",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ci",
+      "to": "cj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cj",
+      "to": "ci",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cj",
+      "to": "ck",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ck",
+      "to": "cj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ck",
+      "to": "di",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "di",
+      "to": "ck",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ck",
+      "to": "dh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dh",
+      "to": "ck",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cl",
+      "to": "dh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dh",
+      "to": "cl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cl",
+      "to": "cm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cm",
+      "to": "cl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cm",
+      "to": "cx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cx",
+      "to": "cm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cn",
+      "to": "cx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cx",
+      "to": "cn",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cn",
+      "to": "co",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "co",
+      "to": "cn",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "co",
+      "to": "cv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cv",
+      "to": "co",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "co",
+      "to": "cp",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cp",
+      "to": "co",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cp",
+      "to": "cu",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cu",
+      "to": "cp",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cp",
+      "to": "cq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cq",
+      "to": "cp",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cq",
+      "to": "cr",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "cr",
+      "to": "cq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cq",
+      "to": "cs",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cs",
+      "to": "cq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cs",
+      "to": "ct",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ct",
+      "to": "cs",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ct",
+      "to": "dd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dd",
+      "to": "ct",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ct",
+      "to": "cu",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cu",
+      "to": "ct",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cu",
+      "to": "cv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cv",
+      "to": "cu",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cv",
+      "to": "da",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "da",
+      "to": "cv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cv",
+      "to": "cz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cz",
+      "to": "cv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cw",
+      "to": "cy",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "cy",
+      "to": "cw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cw",
+      "to": "cx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cx",
+      "to": "cw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cw",
+      "to": "cz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cz",
+      "to": "cw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "cz",
+      "to": "de",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "de",
+      "to": "cz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "c",
+      "to": "d",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "d",
+      "to": "c",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "da",
+      "to": "dc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dc",
+      "to": "da",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "da",
+      "to": "db",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "db",
+      "to": "da",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dc",
+      "to": "df",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "df",
+      "to": "dc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dc",
+      "to": "gy",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gy",
+      "to": "dc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dd",
+      "to": "dx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dx",
+      "to": "dd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dd",
+      "to": "gr",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gr",
+      "to": "dd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dd",
+      "to": "dl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dl",
+      "to": "dd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "de",
+      "to": "df",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "df",
+      "to": "de",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "de",
+      "to": "dg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dg",
+      "to": "de",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "df",
+      "to": "gp",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gp",
+      "to": "df",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dg",
+      "to": "dj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dj",
+      "to": "dg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dg",
+      "to": "q",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "q",
+      "to": "dg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dg",
+      "to": "dh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dh",
+      "to": "dg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "di",
+      "to": "dk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dk",
+      "to": "di",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "di",
+      "to": "ee",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ee",
+      "to": "di",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dj",
+      "to": "dk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dk",
+      "to": "dj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dj",
+      "to": "gq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gq",
+      "to": "dj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dl",
+      "to": "dm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dm",
+      "to": "dl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dl",
+      "to": "gz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gz",
+      "to": "dl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dm",
+      "to": "dn",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dn",
+      "to": "dm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dn",
+      "to": "dp",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dp",
+      "to": "dn",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dn",
+      "to": "do",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "do",
+      "to": "dn",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dp",
+      "to": "dq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dq",
+      "to": "dp",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dp",
+      "to": "ed",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ed",
+      "to": "dp",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dq",
+      "to": "dr",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dr",
+      "to": "dq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dq",
+      "to": "ed",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ed",
+      "to": "dq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dr",
+      "to": "ds",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ds",
+      "to": "dr",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dr",
+      "to": "ec",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ec",
+      "to": "dr",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ds",
+      "to": "dt",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dt",
+      "to": "ds",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ds",
+      "to": "eb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eb",
+      "to": "ds",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dt",
+      "to": "du",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "du",
+      "to": "dt",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dt",
+      "to": "ea",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ea",
+      "to": "dt",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "du",
+      "to": "dv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dv",
+      "to": "du",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "du",
+      "to": "dz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dz",
+      "to": "du",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dv",
+      "to": "dw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dw",
+      "to": "dv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dv",
+      "to": "dy",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dy",
+      "to": "dv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dw",
+      "to": "ef",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ef",
+      "to": "dw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dw",
+      "to": "dx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dx",
+      "to": "dw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dx",
+      "to": "dy",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dy",
+      "to": "dx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dy",
+      "to": "dz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dz",
+      "to": "dy",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "dz",
+      "to": "ea",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ea",
+      "to": "dz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "d",
+      "to": "e",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "e",
+      "to": "d",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ea",
+      "to": "eb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eb",
+      "to": "ea",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eb",
+      "to": "ec",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ec",
+      "to": "eb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ec",
+      "to": "ed",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ed",
+      "to": "ec",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ee",
+      "to": "gv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gv",
+      "to": "ee",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ef",
+      "to": "el",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "el",
+      "to": "ef",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ef",
+      "to": "eg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eg",
+      "to": "ef",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eg",
+      "to": "en",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "en",
+      "to": "eg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eg",
+      "to": "eh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eh",
+      "to": "eg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eh",
+      "to": "eo",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eo",
+      "to": "eh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eh",
+      "to": "ei",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ei",
+      "to": "eh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ei",
+      "to": "ep",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ep",
+      "to": "ei",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ei",
+      "to": "ej",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ej",
+      "to": "ei",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ej",
+      "to": "eq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eq",
+      "to": "ej",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ej",
+      "to": "ek",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ek",
+      "to": "ej",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ek",
+      "to": "ev",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ev",
+      "to": "ek",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ek",
+      "to": "fr",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fr",
+      "to": "ek",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ek",
+      "to": "fx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fx",
+      "to": "ek",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "el",
+      "to": "em",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "em",
+      "to": "el",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "em",
+      "to": "es",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "es",
+      "to": "em",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "em",
+      "to": "en",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "en",
+      "to": "em",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "en",
+      "to": "eo",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eo",
+      "to": "en",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eo",
+      "to": "ep",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ep",
+      "to": "eo",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ep",
+      "to": "eq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eq",
+      "to": "ep",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eq",
+      "to": "er",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "er",
+      "to": "eq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "er",
+      "to": "es",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "es",
+      "to": "er",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "er",
+      "to": "ew",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ew",
+      "to": "er",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "er",
+      "to": "et",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "et",
+      "to": "er",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "es",
+      "to": "fa",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "fa",
+      "to": "es",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "et",
+      "to": "fo",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fo",
+      "to": "et",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "et",
+      "to": "eu",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eu",
+      "to": "et",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eu",
+      "to": "fp",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fp",
+      "to": "eu",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "eu",
+      "to": "ev",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ev",
+      "to": "eu",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ev",
+      "to": "fq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fq",
+      "to": "ev",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ew",
+      "to": "ex",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "ex",
+      "to": "ew",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ew",
+      "to": "ey",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ey",
+      "to": "ew",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ey",
+      "to": "ez",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "ez",
+      "to": "ey",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ey",
+      "to": "gw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gw",
+      "to": "ey",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "e",
+      "to": "f",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "f",
+      "to": "e",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fb",
+      "to": "fc",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "fc",
+      "to": "fb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fb",
+      "to": "gx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gx",
+      "to": "fb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fb",
+      "to": "gw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gw",
+      "to": "fb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fd",
+      "to": "fe",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "fe",
+      "to": "fd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fd",
+      "to": "ff",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ff",
+      "to": "fd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fd",
+      "to": "gx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gx",
+      "to": "fd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ff",
+      "to": "fg",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "fg",
+      "to": "ff",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ff",
+      "to": "fh",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "fh",
+      "to": "ff",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fi",
+      "to": "gx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gx",
+      "to": "fi",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fi",
+      "to": "fj",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "fj",
+      "to": "fi",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fi",
+      "to": "fk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fk",
+      "to": "fi",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fk",
+      "to": "fl",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "fl",
+      "to": "fk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fk",
+      "to": "fm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fm",
+      "to": "fk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fm",
+      "to": "fn",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "fn",
+      "to": "fm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fm",
+      "to": "fr",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fr",
+      "to": "fm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fm",
+      "to": "fq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fq",
+      "to": "fm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fo",
+      "to": "gw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gw",
+      "to": "fo",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fo",
+      "to": "fp",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fp",
+      "to": "fo",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fp",
+      "to": "fq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fq",
+      "to": "fp",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fr",
+      "to": "fy",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fy",
+      "to": "fr",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fs",
+      "to": "ft",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ft",
+      "to": "fs",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "ft",
+      "to": "fu",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fu",
+      "to": "ft",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ft",
+      "to": "fv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fv",
+      "to": "ft",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fu",
+      "to": "gq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gq",
+      "to": "fu",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fu",
+      "to": "fv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fv",
+      "to": "fu",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fv",
+      "to": "fw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fw",
+      "to": "fv",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fw",
+      "to": "gc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gc",
+      "to": "fw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fw",
+      "to": "fy",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fy",
+      "to": "fw",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fx",
+      "to": "gu",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gu",
+      "to": "fx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fx",
+      "to": "fz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fz",
+      "to": "fx",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fy",
+      "to": "gu",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gu",
+      "to": "fy",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fz",
+      "to": "gt",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gt",
+      "to": "fz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "fz",
+      "to": "gb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gb",
+      "to": "fz",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "f",
+      "to": "h",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "h",
+      "to": "f",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "f",
+      "to": "i",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "i",
+      "to": "f",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ga",
+      "to": "gm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gm",
+      "to": "ga",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "gb",
+      "to": "gs",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gs",
+      "to": "gb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gb",
+      "to": "gd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gd",
+      "to": "gb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gc",
+      "to": "gm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gm",
+      "to": "gc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gc",
+      "to": "ge",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ge",
+      "to": "gc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gd",
+      "to": "ge",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ge",
+      "to": "gd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gd",
+      "to": "gf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gf",
+      "to": "gd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ge",
+      "to": "gs",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gs",
+      "to": "ge",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ge",
+      "to": "gg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gg",
+      "to": "ge",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gf",
+      "to": "gg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gg",
+      "to": "gf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gf",
+      "to": "gr",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gr",
+      "to": "gf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gg",
+      "to": "gi",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gi",
+      "to": "gg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gg",
+      "to": "gy",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gy",
+      "to": "gg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gh",
+      "to": "go",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "go",
+      "to": "gh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gh",
+      "to": "gp",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gp",
+      "to": "gh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gh",
+      "to": "gi",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gi",
+      "to": "gh",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gi",
+      "to": "gl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gl",
+      "to": "gi",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gj",
+      "to": "gl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gl",
+      "to": "gj",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "gk",
+      "to": "gm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gm",
+      "to": "gk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gk",
+      "to": "gn",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "gn",
+      "to": "gk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gk",
+      "to": "gl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gl",
+      "to": "gk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gp",
+      "to": "gq",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gq",
+      "to": "gp",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gr",
+      "to": "gy",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gy",
+      "to": "gr",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gs",
+      "to": "gt",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gt",
+      "to": "gs",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gt",
+      "to": "gu",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "gu",
+      "to": "gt",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hb",
+      "to": "he",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "he",
+      "to": "hb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hb",
+      "to": "hc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hc",
+      "to": "hb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hb",
+      "to": "hd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hd",
+      "to": "hb",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hc",
+      "to": "hg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hg",
+      "to": "hc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hc",
+      "to": "hm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hm",
+      "to": "hc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hc",
+      "to": "hi",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hi",
+      "to": "hc",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hd",
+      "to": "hj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hj",
+      "to": "hd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hd",
+      "to": "hk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hk",
+      "to": "hd",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "he",
+      "to": "ho",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ho",
+      "to": "he",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "he",
+      "to": "hf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hf",
+      "to": "he",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hf",
+      "to": "ho",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ho",
+      "to": "hf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hf",
+      "to": "hg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hg",
+      "to": "hf",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hg",
+      "to": "hn",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hn",
+      "to": "hg",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hi",
+      "to": "hl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hl",
+      "to": "hi",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hi",
+      "to": "hj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hj",
+      "to": "hi",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hj",
+      "to": "hk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hk",
+      "to": "hj",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hk",
+      "to": "hl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hl",
+      "to": "hk",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hl",
+      "to": "hm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hm",
+      "to": "hl",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hm",
+      "to": "hn",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hn",
+      "to": "hm",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "hn",
+      "to": "ho",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "ho",
+      "to": "hn",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "h",
+      "to": "j",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "j",
+      "to": "h",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "h",
+      "to": "i",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "i",
+      "to": "h",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "i",
+      "to": "k",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "k",
+      "to": "i",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "j",
+      "to": "l",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "l",
+      "to": "j",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "j",
+      "to": "k",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "k",
+      "to": "j",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "k",
+      "to": "m",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "m",
+      "to": "k",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "l",
+      "to": "n",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "n",
+      "to": "l",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "l",
+      "to": "m",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "m",
+      "to": "l",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "m",
+      "to": "o",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "o",
+      "to": "m",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "n",
+      "to": "p",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "p",
+      "to": "n",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "n",
+      "to": "o",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "o",
+      "to": "n",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "o",
+      "to": "p",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "p",
+      "to": "o",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "p",
+      "to": "r",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "r",
+      "to": "p",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "r",
+      "to": "t",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "t",
+      "to": "r",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "r",
+      "to": "s",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "s",
+      "to": "r",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "t",
+      "to": "u",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "u",
+      "to": "t",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "u",
+      "to": "v",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "v",
+      "to": "u",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "v",
+      "to": "w",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "w",
+      "to": "v",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "w",
+      "to": "z",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "z",
+      "to": "w",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "w",
+      "to": "x",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "x",
+      "to": "w",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "x",
+      "to": "z",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "z",
+      "to": "x",
+      "dead_end": false,
+      "weight": 0
+    },
+    {
+      "from": "x",
+      "to": "y",
+      "dead_end": true,
+      "weight": 0
+    },
+    {
+      "from": "y",
+      "to": "x",
+      "dead_end": false,
+      "weight": 0
+    }
+  ],
+  "total_edges": 315
+}

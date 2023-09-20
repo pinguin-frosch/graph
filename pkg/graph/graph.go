@@ -12,17 +12,17 @@ const (
 )
 
 type Graph struct {
-	vertices   []*Vertex
-	edges      []*Edge
+	Vertices   []string `json:"vertices"`
+	Edges      []*Edge  `json:"edges"`
+	TotalEdges uint     `json:"total_edges"`
 	usedEdges  uint
-	totalEdges uint
 }
 
 func (g *Graph) GetShortestWalk() ([]string, error) {
 	var shortest int = math.MaxInt
 	var shortestSequence []string
-	for _, v := range g.vertices {
-		sequence, err := g.WalkFrom(v.key)
+	for _, v := range g.Vertices {
+		sequence, err := g.WalkFrom(v)
 		if err != nil {
 			return nil, err
 		}
@@ -36,7 +36,7 @@ func (g *Graph) GetShortestWalk() ([]string, error) {
 
 func (g *Graph) resetState() {
 	g.usedEdges = 0
-	for _, e := range g.edges {
+	for _, e := range g.Edges {
 		e.visitCount = 0
 	}
 }
@@ -45,22 +45,22 @@ func (g *Graph) WalkFrom(from string) ([]string, error) {
 	g.resetState()
 	sequence := make([]string, 0)
 	vertex := g.GetVertex(from)
-	if vertex == nil {
+	if vertex == "" {
 		return nil, errors.New("The starting vertex does not exist!")
 	}
-	sequence = append(sequence, vertex.key)
+	sequence = append(sequence, vertex)
 
 	for !g.IsTraversed() {
 		// Get the next edge to use
-		edge, unique := g.GetNextEdge(vertex.key)
+		edge, unique := g.GetNextEdge(vertex)
 		if edge == nil {
 			return nil, errors.New("Received an invalid edge")
 		}
 
 		// Get the other edge
-		otherEdge := g.GetEdge(edge.to.key, edge.from.key)
+		otherEdge := g.GetEdge(edge.To, edge.From)
 		if otherEdge == nil {
-			return nil, errors.New(fmt.Sprintf("Couldn't find the other edge, from %v to %v", edge.to.key, edge.from.key))
+			return nil, errors.New(fmt.Sprintf("Couldn't find the other edge, from %v to %v", edge.To, edge.From))
 		}
 
 		// Only count unused edges
@@ -77,37 +77,38 @@ func (g *Graph) WalkFrom(from string) ([]string, error) {
 			edge.visitCount += 1
 		}
 
-		sequence = append(sequence, edge.to.key)
-		vertex = edge.to
+		sequence = append(sequence, edge.To)
+		vertex = edge.To
 	}
 
 	return sequence, nil
 }
 
 func (g *Graph) IsTraversed() bool {
-	return g.usedEdges >= g.totalEdges
+	return g.usedEdges >= g.TotalEdges
 }
 
 func (g *Graph) AddEdge(from, to string) error {
 	f := g.GetVertex(from)
 	t := g.GetVertex(to)
-	if f == nil || t == nil {
+	if f == "" || t == "" {
 		return errors.New(fmt.Sprintf("Cannot create edge between %v and %v!\n", from, to))
 	}
 	if g.GetEdge(from, to) != nil || g.GetEdge(to, from) != nil {
 		return errors.New(RepeatedEdge)
 	}
-	g.edges = append(g.edges, &Edge{
-		from: f,
-		to:   t,
+	g.Edges = append(g.Edges, &Edge{
+		From: f,
+		To:   t,
 	})
-	g.edges = append(g.edges, &Edge{
-		from: t,
-		to:   f,
+	g.Edges = append(g.Edges, &Edge{
+		From: t,
+		To:   f,
 	})
 
 	// Since both edges count as one we only increment by one
-	g.totalEdges++
+	g.TotalEdges++
+	fmt.Println(g.TotalEdges)
 
 	return nil
 }
@@ -115,11 +116,11 @@ func (g *Graph) AddEdge(from, to string) error {
 func (g *Graph) GetEdge(from, to string) *Edge {
 	f := g.GetVertex(from)
 	t := g.GetVertex(to)
-	if f == nil || t == nil {
+	if f == "" || t == "" {
 		return nil
 	}
-	for _, e := range g.edges {
-		if e.from.key == from && e.to.key == to {
+	for _, e := range g.Edges {
+		if e.From == from && e.To == to {
 			return e
 		}
 	}
@@ -136,9 +137,9 @@ func (g *Graph) GetEdges(key string) ([]*Edge, uint, uint, int) {
 	edges := make([]*Edge, 0)
 
 	// Compute all the required information
-	for _, e := range g.edges {
-		if e.from.key == key {
-			switch e.deadEnd {
+	for _, e := range g.Edges {
+		if e.From == key {
+			switch e.DeadEnd {
 			case true:
 				deadEndCount++
 				if e.visitCount < minimumDeadEnd {
@@ -163,7 +164,7 @@ func (g *Graph) GetNextEdge(key string) (*Edge, bool) {
 
 	if deadEndCount == 1 {
 		for _, e := range edges {
-			if !e.deadEnd {
+			if !e.DeadEnd {
 				continue
 			}
 			if e.visitCount < 2 {
@@ -172,7 +173,7 @@ func (g *Graph) GetNextEdge(key string) (*Edge, bool) {
 		}
 	} else if deadEndCount > 1 {
 		for _, e := range edges {
-			if !e.deadEnd {
+			if !e.DeadEnd {
 				continue
 			}
 			if e.visitCount > minimumDeadEnd {
@@ -184,7 +185,7 @@ func (g *Graph) GetNextEdge(key string) (*Edge, bool) {
 		}
 	}
 	for _, e := range edges {
-		if e.deadEnd {
+		if e.DeadEnd {
 			continue
 		}
 		if e.visitCount > minimum {
@@ -197,30 +198,30 @@ func (g *Graph) GetNextEdge(key string) (*Edge, bool) {
 }
 
 func (g *Graph) AddVertex(key string) error {
-	if g.GetVertex(key) != nil {
+	if g.GetVertex(key) != "" {
 		return errors.New(RepeatedVertex)
 	}
-	g.vertices = append(g.vertices, &Vertex{key: key})
+	g.Vertices = append(g.Vertices, key)
 	return nil
 }
 
-func (g *Graph) GetVertex(key string) *Vertex {
-	for _, v := range g.vertices {
-		if v.key == key {
+func (g *Graph) GetVertex(key string) string {
+	for _, v := range g.Vertices {
+		if v == key {
 			return v
 		}
 	}
-	return nil
+	return ""
 }
 
 func (g *Graph) Print() {
-	if len(g.vertices) != 0 {
-		for _, v := range g.vertices {
-			fmt.Printf("%v: ", v.key)
-			edges, _, _, _ := g.GetEdges(v.key)
+	if len(g.Vertices) != 0 {
+		for _, v := range g.Vertices {
+			fmt.Printf("%v: ", v)
+			edges, _, _, _ := g.GetEdges(v)
 			for _, e := range edges {
-				fmt.Printf("%v", e.to.key)
-				if e.deadEnd {
+				fmt.Printf("%v", e.To)
+				if e.DeadEnd {
 					fmt.Printf("*")
 				}
 				fmt.Printf(" ")
@@ -230,13 +231,10 @@ func (g *Graph) Print() {
 	}
 }
 
-type Vertex struct {
-	key string
-}
-
 type Edge struct {
-	from       *Vertex
-	to         *Vertex
-	deadEnd    bool
+	From       string `json:"from"`
+	To         string `json:"to"`
+	DeadEnd    bool   `json:"dead_end"`
+	Weight     uint   `json:"weight"`
 	visitCount uint
 }
