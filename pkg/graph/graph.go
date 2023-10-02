@@ -138,13 +138,26 @@ func (g *Graph) GetEdge(from, to string) *Edge {
 	return nil
 }
 
-// Returns all the edges from a certain vertex, the least any edge has been
-// used and wether there's a dead end edge. This is not supposed to be used
-// directly.
-func (g *Graph) GetEdges(key string) ([]*Edge, uint, uint, int) {
-	var minimum uint = math.MaxUint
-	var minimumDeadEnd uint = math.MaxUint
-	deadEndCount := 0
+type EdgesResult struct {
+	// The least amount of times non dead end edges has been used
+	Minimum uint
+	// The least amount of times dead end edges have been used
+	MinimumDeadEnd uint
+	// The number of dead ends found
+	DeadEndCount uint
+	// The minimum weight found
+	Weight uint
+}
+
+// Returns all the edges from a certain vertex, plus useful stats to later
+// decide. This is not supposed to be used directly.
+func (g *Graph) GetEdges(key string) ([]*Edge, EdgesResult) {
+	result := EdgesResult{
+		Minimum:        math.MaxUint,
+		MinimumDeadEnd: math.MaxUint,
+		DeadEndCount:   0,
+		Weight:         0,
+	}
 	edges := make([]*Edge, 0)
 
 	// Compute all the required information
@@ -152,28 +165,33 @@ func (g *Graph) GetEdges(key string) ([]*Edge, uint, uint, int) {
 		if e.From == key {
 			switch e.DeadEnd {
 			case true:
-				deadEndCount++
-				if e.visitCount < minimumDeadEnd {
-					minimumDeadEnd = e.visitCount
+				result.DeadEndCount++
+				if e.visitCount < result.MinimumDeadEnd {
+					result.MinimumDeadEnd = e.visitCount
 				}
 			case false:
-				if e.visitCount < minimum {
-					minimum = e.visitCount
+				if e.visitCount < result.Minimum {
+					result.Minimum = e.visitCount
+					result.Weight = e.Weight
+				} else if e.visitCount == result.Minimum {
+					if e.Weight < result.Weight {
+						result.Weight = e.Weight
+					}
 				}
 			}
 			edges = append(edges, e)
 		}
 	}
 
-	return edges, minimum, minimumDeadEnd, deadEndCount
+	return edges, result
 }
 
 // Returns the next edge to use in the search algorithm and wether it was the only one found
 func (g *Graph) GetNextEdge(key string) (*Edge, bool) {
-	edges, minimum, minimumDeadEnd, deadEndCount := g.GetEdges(key)
+	edges, result := g.GetEdges(key)
 	unique := len(edges) == 1
 
-	if deadEndCount == 1 {
+	if result.DeadEndCount == 1 {
 		for _, e := range edges {
 			if !e.DeadEnd {
 				continue
@@ -182,12 +200,12 @@ func (g *Graph) GetNextEdge(key string) (*Edge, bool) {
 				return e, unique
 			}
 		}
-	} else if deadEndCount > 1 {
+	} else if result.DeadEndCount > 1 {
 		for _, e := range edges {
 			if !e.DeadEnd {
 				continue
 			}
-			if e.visitCount > minimumDeadEnd {
+			if e.visitCount > result.MinimumDeadEnd {
 				continue
 			}
 			if e.visitCount < 2 {
@@ -199,7 +217,10 @@ func (g *Graph) GetNextEdge(key string) (*Edge, bool) {
 		if e.DeadEnd {
 			continue
 		}
-		if e.visitCount > minimum {
+		if e.visitCount > result.Minimum {
+			continue
+		}
+		if e.Weight > result.Weight {
 			continue
 		}
 		return e, unique
@@ -229,7 +250,7 @@ func (g *Graph) Print() {
 	if len(g.Vertices) != 0 {
 		for _, v := range g.Vertices {
 			fmt.Printf("%v: ", v)
-			edges, _, _, _ := g.GetEdges(v)
+			edges, _ := g.GetEdges(v)
 			for _, e := range edges {
 				fmt.Printf("%v", e.To)
 				if e.DeadEnd {
