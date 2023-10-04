@@ -120,7 +120,7 @@ func (g *Graph) AddEdge(from, to string) error {
 	f := g.GetVertex(from)
 	t := g.GetVertex(to)
 	if f == "" || t == "" {
-		return errors.New(fmt.Sprintf("Cannot create edge between %v and %v!\n", from, to))
+		return errors.New(fmt.Sprintf("Cannot create edge between %v and %v!", from, to))
 	}
 	if g.GetEdge(from, to) != nil || g.GetEdge(to, from) != nil {
 		return errors.New(RepeatedEdge)
