@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"time"
 )
 
 func NewFromFile(filename string) (*Graph, error) {
@@ -30,7 +31,8 @@ func (g *Graph) saveSnapshot() error {
 	if err != nil && !errors.Is(err, os.ErrExist) {
 		return err
 	}
-	filename := fmt.Sprintf("snapshots/snapshot.json")
+	now := time.Now().Format("02-01-06 15:04:05")
+	filename := fmt.Sprintf("snapshots/%s.json", now)
 	err = os.WriteFile(filename, bytes, 0644)
 	if err != nil {
 		return err
