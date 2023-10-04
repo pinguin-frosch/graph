@@ -75,7 +75,6 @@ func NewInteractively() (*Graph, error) {
 			err := g.AddEdge(from, to)
 			if err != nil {
 				fmt.Printf("Error: %v\n", err.Error())
-				exit = true
 				break
 			}
 
@@ -88,7 +87,6 @@ func NewInteractively() (*Graph, error) {
 			otherEdge := g.GetEdge(to, from)
 			if otherEdge == nil {
 				fmt.Printf("Error: Couldn't the other get edge!")
-				exit = true
 				break
 			}
 

@@ -265,7 +265,7 @@ func (g *Graph) Print() {
 			fmt.Printf("%v: ", v)
 			edges, _ := g.GetEdges(v)
 			for _, e := range edges {
-				fmt.Printf("%v", e.To)
+				fmt.Printf("%v(%v)", e.To, e.Weight)
 				if e.DeadEnd {
 					fmt.Printf("*")
 				}
