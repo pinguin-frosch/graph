@@ -1,8 +1,10 @@
 package graph
 
 import (
+	"bufio"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"os"
 )
 
@@ -35,4 +37,103 @@ func (g *Graph) saveSnapshot() error {
 	}
 	fmt.Printf("Saved as %s\n", filename)
 	return nil
+}
+
+func NewInteractively() (*Graph, error) {
+	fmt.Println("? to list the options")
+	g := Graph{}
+
+	stdin := bufio.NewReader(os.Stdin)
+	exit := false
+	for {
+		fmt.Printf(">> ")
+
+		var option string
+		fmt.Scanf("%s", &option)
+
+		switch option {
+		case "E":
+			var from, to, deadEnd string
+			var weight uint
+
+			fmt.Printf("From: ")
+			fmt.Scanf("%s", &from)
+
+			fmt.Printf("To: ")
+			fmt.Scanf("%s", &to)
+
+			fmt.Printf("Deadend [N/y]: ")
+			fmt.Scanf("%s", &deadEnd)
+
+			fmt.Printf("Weight (default 0): ")
+			n, _ := fmt.Scanf("%d", &weight)
+			if n == 0 {
+				fmt.Println("Using default value for weight.")
+				stdin.ReadString('\n')
+			}
+
+			err := g.AddEdge(from, to)
+			if err != nil {
+				fmt.Printf("Error: %v\n", err.Error())
+				exit = true
+				break
+			}
+
+			edge := g.GetEdge(from, to)
+			if edge == nil {
+				fmt.Printf("Error: Couldn't get edge!")
+				exit = true
+				break
+			}
+			otherEdge := g.GetEdge(to, from)
+			if otherEdge == nil {
+				fmt.Printf("Error: Couldn't the other get edge!")
+				exit = true
+				break
+			}
+
+			edge.Weight = weight
+			otherEdge.Weight = weight
+			if deadEnd == "y" {
+				edge.DeadEnd = true
+			}
+
+		case "P":
+			g.Print()
+		case "S":
+			err := g.saveSnapshot()
+			if err != nil {
+				fmt.Printf("Error: %v\n", err.Error())
+			}
+		case "V":
+			var vertex string
+
+			fmt.Printf("Vertex: ")
+			fmt.Scanf("%s", &vertex)
+
+			err := g.AddVertex(vertex)
+			if err != nil {
+				fmt.Printf("Error: %v\n", err.Error())
+			}
+		case "X":
+			exit = true
+		case "?":
+			printOptions()
+		}
+
+		if exit {
+			break
+		}
+	}
+
+	return &g, nil
+}
+
+func printOptions() {
+	fmt.Println("E: Add edge")
+	fmt.Println("P: Print graph")
+	fmt.Println("S: Save graph state")
+	fmt.Println("V: Add vertex")
+	fmt.Println("X: Exit")
+	fmt.Println("?: List options")
 }

@@ -6,14 +6,9 @@ import (
 )
 
 func main() {
-	g, err := graph.NewFromFile("graph.json")
+	g, err := graph.NewInteractively()
 	if err != nil {
 		log.Fatal(err)
 	}
 	g.Print()
-	result, err := g.GetShortestWalk()
-	if err != nil {
-		log.Fatal(err)
-	}
-	result.Print()
 }
