@@ -6,9 +6,9 @@ import (
 )
 
 func main() {
-	g, err := graph.NewInteractively()
+	g := graph.Graph{}
+	err := g.ModifyInteractively()
 	if err != nil {
 		log.Fatal(err)
 	}
-	g.Print()
 }

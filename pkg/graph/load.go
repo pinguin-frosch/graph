@@ -41,9 +41,8 @@ func (g *Graph) saveSnapshot() error {
 	return nil
 }
 
-func NewInteractively() (*Graph, error) {
+func (g *Graph) ModifyInteractively() error {
 	fmt.Println("? to list the options")
-	g := Graph{}
 
 	stdin := bufio.NewReader(os.Stdin)
 	exit := false
@@ -126,7 +125,8 @@ func NewInteractively() (*Graph, error) {
 		}
 	}
 
-	return &g, nil
+	return nil
+
 }
 
 func printOptions() {
