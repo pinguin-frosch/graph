@@ -51,6 +51,9 @@ func (g *Graph) GetEdge(from, to string) *Edge {
 }
 
 func (g *Graph) AddVertex(key string) error {
+	if key == "" {
+		return errors.New("Invalid key for vertex!")
+	}
 	if g.GetVertex(key) != "" {
 		return errors.New(RepeatedVertex)
 	}

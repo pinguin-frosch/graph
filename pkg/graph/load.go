@@ -75,7 +75,7 @@ func (g *Graph) ModifyInteractively() error {
 
 			err := g.AddEdge(from, to)
 			if err != nil {
-				fmt.Printf("Error: %v\n", err.Error())
+				printErrorMessage(err)
 				break
 			}
 
@@ -99,23 +99,37 @@ func (g *Graph) ModifyInteractively() error {
 
 		case "P":
 			g.Print()
+
 		case "S":
 			err := g.saveSnapshot()
 			if err != nil {
 				fmt.Printf("Error: %v\n", err.Error())
 			}
+
 		case "V":
-			var vertex string
-
-			fmt.Printf("Vertex: ")
-			fmt.Scanf("%s", &vertex)
-
-			err := g.AddVertex(vertex)
-			if err != nil {
-				fmt.Printf("Error: %v\n", err.Error())
+			fmt.Println("Adding vertices, type .exit to go back")
+			count := 0
+			for {
+				var vertex string
+				fmt.Printf("Vertex: ")
+				fmt.Scanf("%s", &vertex)
+				if vertex == ".exit" {
+					break
+				}
+				err := g.AddVertex(vertex)
+				if err != nil {
+					printErrorMessage(err)
+					continue
+				}
+				count++
 			}
+			if count > 0 {
+				fmt.Printf("Succesfully added %v vertices.\n", count)
+			}
+
 		case "X":
 			exit = true
+
 		case "?":
 			printOptions()
 		}
@@ -133,7 +147,11 @@ func printOptions() {
 	fmt.Println("E: Add edge")
 	fmt.Println("P: Print graph")
 	fmt.Println("S: Save graph state")
-	fmt.Println("V: Add vertex")
+	fmt.Println("V: Add vertices")
 	fmt.Println("X: Exit")
 	fmt.Println("?: List options")
+}
+
+func printErrorMessage(err error) {
+	fmt.Printf("Error: %v\n", err.Error())
 }
