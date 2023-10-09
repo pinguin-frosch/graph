@@ -6,6 +6,10 @@ import (
 	"math"
 )
 
+var (
+	ErrInvalidNextEdge = errors.New("Received an invalid edge!")
+)
+
 func (g *Graph) GetShortestWalk() (*ResultSequence, error) {
 	var shortest int = math.MaxInt
 	result := ResultSequence{
@@ -14,8 +18,11 @@ func (g *Graph) GetShortestWalk() (*ResultSequence, error) {
 	}
 	for _, v := range g.Vertices {
 		r, err := g.WalkFrom(v)
-		if err != nil {
+		if err != nil && !errors.Is(err, ErrInvalidNextEdge) {
 			return nil, err
+		}
+		if errors.Is(err, ErrInvalidNextEdge) {
+			continue
 		}
 		if len(r.Sequence) < shortest {
 			shortest = len(r.Sequence)
@@ -45,7 +52,7 @@ func (g *Graph) WalkFrom(from string) (*ResultSequence, error) {
 		// Get the next edge to use
 		edge, unique := g.GetNextEdge(vertex)
 		if edge == nil {
-			return nil, errors.New("Received an invalid edge")
+			return nil, ErrInvalidNextEdge
 		}
 
 		// Get the other edge
