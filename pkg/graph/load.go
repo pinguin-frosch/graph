@@ -105,6 +105,20 @@ func (g *Graph) ModifyInteractively() error {
 			}
 			sequence.Print()
 
+		case "L":
+			fmt.Println("After loading the state, any unsaved changes will be lost.")
+			var filename string
+			fmt.Printf("Filename: ")
+			fmt.Scanf("%s", &filename)
+
+			newGraph, err := NewFromFile(filename)
+			if err != nil {
+				printErrorMessage(err)
+				break
+			}
+
+			g = newGraph
+
 		case "P":
 			g.Print()
 
@@ -166,6 +180,7 @@ func (g *Graph) ModifyInteractively() error {
 func printOptions() {
 	fmt.Println("E: Add edge")
 	fmt.Println("F: Find shortest path")
+	fmt.Println("L: Load graph state from file")
 	fmt.Println("P: Print graph")
 	fmt.Println("S: Save graph state")
 	fmt.Println("V: Add vertices")
