@@ -97,6 +97,14 @@ func (g *Graph) ModifyInteractively() error {
 				edge.DeadEnd = true
 			}
 
+		case "F":
+			sequence, err := g.GetShortestWalk()
+			if err != nil {
+				printErrorMessage(err)
+				break
+			}
+			sequence.Print()
+
 		case "P":
 			g.Print()
 
@@ -127,6 +135,18 @@ func (g *Graph) ModifyInteractively() error {
 				fmt.Printf("Succesfully added %v vertices.\n", count)
 			}
 
+		case "W":
+			var from string
+			fmt.Printf("From: ")
+			fmt.Scanf("%s", &from)
+
+			sequence, err := g.WalkFrom(from)
+			if err != nil {
+				printErrorMessage(err)
+				break
+			}
+			sequence.Print()
+
 		case "X":
 			exit = true
 
@@ -145,9 +165,11 @@ func (g *Graph) ModifyInteractively() error {
 
 func printOptions() {
 	fmt.Println("E: Add edge")
+	fmt.Println("F: Find shortest path")
 	fmt.Println("P: Print graph")
 	fmt.Println("S: Save graph state")
 	fmt.Println("V: Add vertices")
+	fmt.Println("W: Walk the graph")
 	fmt.Println("X: Exit")
 	fmt.Println("?: List options")
 }
