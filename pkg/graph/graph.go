@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	RepeatedVertex = "That vertex already exists!"
-	RepeatedEdge   = "That edge already exists!"
+	RepeatedVertex = "vertex already exists"
+	RepeatedEdge   = "edge already exists"
 )
 
 type Graph struct {
@@ -19,7 +19,7 @@ func (g *Graph) AddEdge(from, to string) error {
 	f := g.GetVertex(from)
 	t := g.GetVertex(to)
 	if f == "" || t == "" {
-		return errors.New(fmt.Sprintf("Cannot create edge between %v and %v!", from, to))
+		return fmt.Errorf("cannot create edge between %v and %v", from, to)
 	}
 	if g.GetEdge(from, to) != nil || g.GetEdge(to, from) != nil {
 		return errors.New(RepeatedEdge)
@@ -52,7 +52,7 @@ func (g *Graph) GetEdge(from, to string) *Edge {
 
 func (g *Graph) AddVertex(key string) error {
 	if key == "" {
-		return errors.New("Invalid key for vertex!")
+		return errors.New("invalid key for vertex")
 	}
 	if g.GetVertex(key) != "" {
 		return errors.New(RepeatedVertex)

@@ -7,11 +7,11 @@ import (
 )
 
 var (
-	ErrInvalidNextEdge = errors.New("Received an invalid edge!")
+	ErrInvalidNextEdge = errors.New("received an invalid edge")
 )
 
 func (g *Graph) GetShortestWalk() (*ResultSequence, error) {
-	var shortest int = math.MaxInt
+	var shortest = math.MaxInt
 	result := ResultSequence{
 		Sequence: make([]string, 0),
 		Distance: 0,
@@ -44,7 +44,7 @@ func (g *Graph) WalkFrom(from string) (*ResultSequence, error) {
 
 	vertex := g.GetVertex(from)
 	if vertex == "" {
-		return nil, errors.New("The starting vertex does not exist!")
+		return nil, errors.New("starting vertex does not exist")
 	}
 	result.Sequence = append(result.Sequence, vertex)
 
@@ -58,7 +58,7 @@ func (g *Graph) WalkFrom(from string) (*ResultSequence, error) {
 		// Get the other edge
 		otherEdge := g.GetEdge(edge.To, edge.From)
 		if otherEdge == nil {
-			return nil, errors.New(fmt.Sprintf("Couldn't find the other edge, from %v to %v", edge.To, edge.From))
+			return nil, fmt.Errorf("couldn't find the other edge, from %v to %v", edge.To, edge.From)
 		}
 
 		// Only count unused edges
