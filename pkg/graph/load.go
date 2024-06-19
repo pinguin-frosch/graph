@@ -53,6 +53,10 @@ func (g *Graph) ModifyInteractively() error {
 		fmt.Scanf("%s", &option)
 
 		switch option {
+		case "A":
+			// TODO: add more algorithms
+			d := DefaultTraverseAlgorithm{}
+			g.SetTraverseAlgorithm(d)
 		case "E":
 			var from, to, deadEnd string
 			var weight uint
@@ -98,7 +102,7 @@ func (g *Graph) ModifyInteractively() error {
 			}
 
 		case "F":
-			sequence, err := g.GetShortestWalk()
+			sequence, err := g.GetShortestSequence()
 			if err != nil {
 				printErrorMessage(err)
 				break
@@ -154,7 +158,7 @@ func (g *Graph) ModifyInteractively() error {
 			fmt.Printf("From: ")
 			fmt.Scanf("%s", &from)
 
-			sequence, err := g.WalkFrom(from)
+			sequence, err := g.GetSequence(from)
 			if err != nil {
 				printErrorMessage(err)
 				break
@@ -178,6 +182,7 @@ func (g *Graph) ModifyInteractively() error {
 }
 
 func printOptions() {
+	fmt.Println("A: Change traverse algorithm")
 	fmt.Println("E: Add edge")
 	fmt.Println("F: Find shortest path")
 	fmt.Println("L: Load graph state from file")

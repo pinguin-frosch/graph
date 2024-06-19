@@ -11,8 +11,9 @@ const (
 )
 
 type Graph struct {
-	Vertices []string `json:"vertices"`
-	Edges    []*Edge  `json:"edges"`
+	Vertices          []string `json:"vertices"`
+	Edges             []*Edge  `json:"edges"`
+	traverseAlgorithm TraverseAlgorithm
 }
 
 func (g *Graph) AddEdge(from, to string) error {

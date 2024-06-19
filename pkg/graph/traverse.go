@@ -6,18 +6,38 @@ import (
 	"math"
 )
 
+type TraverseAlgorithm interface {
+	getSequence(g *Graph, from string) (*ResultSequence, error)
+}
+
 var (
 	ErrInvalidNextEdge = errors.New("received an invalid edge")
+	ErrNoAlgorithmSet  = errors.New("no traverse algorithm has been set")
 )
 
-func (g *Graph) GetShortestWalk() (*ResultSequence, error) {
+func (g *Graph) SetTraverseAlgorithm(a TraverseAlgorithm) {
+	g.traverseAlgorithm = a
+}
+
+func (g *Graph) GetSequence(from string) (*ResultSequence, error) {
+	if g.traverseAlgorithm == nil {
+		return nil, ErrNoAlgorithmSet
+	}
+	r, err := g.traverseAlgorithm.getSequence(g, from)
+	if err != nil {
+		return nil, err
+	}
+	return r, nil
+}
+
+func (g *Graph) GetShortestSequence() (*ResultSequence, error) {
 	var shortest = math.MaxInt
 	result := ResultSequence{
 		Sequence: make([]string, 0),
 		Distance: 0,
 	}
 	for _, v := range g.Vertices {
-		r, err := g.WalkFrom(v)
+		r, err := g.GetSequence(v)
 		if err != nil && !errors.Is(err, ErrInvalidNextEdge) {
 			return nil, err
 		}
@@ -30,56 +50,6 @@ func (g *Graph) GetShortestWalk() (*ResultSequence, error) {
 			result.Sequence = r.Sequence
 		}
 	}
-	return &result, nil
-}
-
-func (g *Graph) WalkFrom(from string) (*ResultSequence, error) {
-	g.resetState()
-	result := ResultSequence{
-		Distance: 0,
-	}
-	result.Sequence = make([]string, 0)
-	totalEdges := g.GetTotalEdges()
-	var usedEdges uint = 0
-
-	vertex := g.GetVertex(from)
-	if vertex == "" {
-		return nil, errors.New("starting vertex does not exist")
-	}
-	result.Sequence = append(result.Sequence, vertex)
-
-	for usedEdges < totalEdges {
-		// Get the next edge to use
-		edge, unique := g.GetNextEdge(vertex)
-		if edge == nil {
-			return nil, ErrInvalidNextEdge
-		}
-
-		// Get the other edge
-		otherEdge := g.GetEdge(edge.To, edge.From)
-		if otherEdge == nil {
-			return nil, fmt.Errorf("couldn't find the other edge, from %v to %v", edge.To, edge.From)
-		}
-
-		// Only count unused edges
-		if edge.visitCount == 0 {
-			usedEdges++
-		}
-
-		// Update usage, if it was the only option increase by two because it's a dead end
-		if unique && edge.visitCount == 0 {
-			otherEdge.visitCount += 2
-			edge.visitCount += 2
-		} else {
-			otherEdge.visitCount += 1
-			edge.visitCount += 1
-		}
-
-		result.Distance += edge.Weight
-		result.Sequence = append(result.Sequence, edge.To)
-		vertex = edge.To
-	}
-
 	return &result, nil
 }
 
@@ -102,49 +72,6 @@ func (g *Graph) resetState() {
 	for _, e := range g.Edges {
 		e.visitCount = 0
 	}
-}
-
-// Returns the next edge to use in the search algorithm and wether it was the only one found
-func (g *Graph) GetNextEdge(key string) (*Edge, bool) {
-	edges, result := g.GetEdges(key)
-	unique := len(edges) == 1
-
-	if result.DeadEndCount == 1 {
-		for _, e := range edges {
-			if !e.DeadEnd {
-				continue
-			}
-			if e.visitCount < 2 {
-				return e, unique
-			}
-		}
-	} else if result.DeadEndCount > 1 {
-		for _, e := range edges {
-			if !e.DeadEnd {
-				continue
-			}
-			if e.visitCount > result.MinimumDeadEnd {
-				continue
-			}
-			if e.visitCount < 2 {
-				return e, unique
-			}
-		}
-	}
-	for _, e := range edges {
-		if e.DeadEnd {
-			continue
-		}
-		if e.visitCount > result.Minimum {
-			continue
-		}
-		if e.Weight > result.Weight {
-			continue
-		}
-		return e, unique
-	}
-
-	return nil, unique
 }
 
 // Returns all the edges from a certain vertex, plus useful stats to later
