@@ -1,14 +1,10 @@
 package main
 
 import (
-	"graph/pkg/graph"
-	"log"
+	"graph/pkg/menus"
 )
 
 func main() {
-	g := graph.Graph{}
-	err := g.ModifyInteractively()
-	if err != nil {
-		log.Fatal(err)
-	}
+	graphMenu := menus.GraphMenu
+	graphMenu.Start()
 }
