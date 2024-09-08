@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"slices"
 	"time"
 )
 
@@ -23,10 +24,62 @@ type Node struct {
 	id string
 }
 
+func NewNode(id string) Node {
+	return Node{id: id}
+}
+
+// returns all nodes in the graph in ascending order by id
+func (g *Graph) Nodes() []Node {
+	nodes := make([]Node, len(g.nodes))
+	i := 0
+	for _, node := range g.nodes {
+		nodes[i] = node
+		i++
+	}
+	slices.SortFunc(nodes, func(a, b Node) int {
+		if a.id < b.id {
+			return -1
+		} else {
+			return 1
+		}
+	})
+	return nodes
+}
+
 type Edge struct {
 	from   Node
 	to     Node
-	weight float64
+	weight int
+}
+
+// returns a new edge with the from and to fields swapped
+func (e Edge) ReversedEdge() Edge {
+	return Edge{e.to, e.from, e.weight}
+}
+
+func NewEdge(from, to Node, weight int) Edge {
+	return Edge{from, to, weight}
+}
+
+// returns all edges that are reachable from node ordered by ascending weight
+func (g *Graph) EdgesFrom(node Node) []Edge {
+	edgesMap := g.edges[node.id]
+	edges := make([]Edge, len(edgesMap))
+	i := 0
+	for _, edge := range edgesMap {
+		edges[i] = edge
+		i++
+	}
+	slices.SortFunc(edges, func(a, b Edge) int {
+		if a.weight < b.weight {
+			return -1
+		} else if a.weight > b.weight {
+			return 1
+		} else {
+			return 0
+		}
+	})
+	return edges
 }
 
 func NewGraph() *Graph {
@@ -106,11 +159,23 @@ func (g *Graph) AddEdge(edge Edge) error {
 	}
 
 	if toMap, ok := g.edges[to.id]; ok {
-		toMap[from.id] = edge
+		toMap[from.id] = edge.ReversedEdge()
 	} else {
 		g.edges[to.id] = make(map[string]Edge)
-		g.edges[to.id][from.id] = edge
+		g.edges[to.id][from.id] = edge.ReversedEdge()
 	}
 
 	return nil
+}
+
+func (g *Graph) Print() {
+	nodes := g.Nodes()
+	for _, node := range nodes {
+		fmt.Printf("%s: ", node.id)
+		edges := g.EdgesFrom(node)
+		for _, edge := range edges {
+			fmt.Printf("%s(%d) ", edge.to.id, edge.weight)
+		}
+		fmt.Println()
+	}
 }
