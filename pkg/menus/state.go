@@ -15,10 +15,8 @@ func init() {
 		Graph = graph.NewGraph()
 	})
 	StateMenu.AddOption("f", "new graph from file", func() {
-		scanner := StateMenu.Scanner
-		fmt.Print("message: ")
-		scanner.Scan()
-		g, err := graph.NewGraphFromFile(scanner.Text())
+		path := StateMenu.GetString("path: ")
+		g, err := graph.NewGraphFromFile(path)
 		if err != nil {
 			fmt.Printf("error: %s\n", err.Error())
 			return

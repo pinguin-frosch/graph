@@ -3,8 +3,6 @@ package menus
 import (
 	"fmt"
 	"graph/pkg/graph"
-	"strconv"
-	"strings"
 
 	"github.com/pinguin-frosch/menu/pkg/menu"
 )
@@ -19,10 +17,7 @@ func init() {
 		StateMenu.Start()
 	})
 	GraphMenu.AddOption("n", "add node", func() {
-		scanner := GraphMenu.Scanner
-		fmt.Printf("id: ")
-		scanner.Scan()
-		id := strings.Trim(scanner.Text(), " ")
+		id := GraphMenu.GetString("id: ")
 		node := graph.NewNode(id)
 		err := Graph.AddNode(node)
 		if err != nil {
@@ -31,18 +26,11 @@ func init() {
 		}
 	})
 	GraphMenu.AddOption("e", "add edge", func() {
-		scanner := GraphMenu.Scanner
-		fmt.Printf("from: ")
-		scanner.Scan()
-		fromId := strings.Trim(scanner.Text(), " ")
+		fromId := GraphMenu.GetString("from: ")
 		fromNode := graph.NewNode(fromId)
-		fmt.Printf("to: ")
-		scanner.Scan()
-		toId := strings.Trim(scanner.Text(), " ")
+		toId := GraphMenu.GetString("to: ")
 		toNode := graph.NewNode(toId)
-		fmt.Printf("weight: ")
-		scanner.Scan()
-		weight, err := strconv.Atoi(strings.Trim(scanner.Text(), " "))
+		weight, err := GraphMenu.GetInt("weight: ")
 		if err != nil {
 			fmt.Printf("error: %s\n", err.Error())
 			return
