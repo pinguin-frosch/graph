@@ -27,9 +27,17 @@ func init() {
 	})
 	GraphMenu.AddOption("e", "add edge", func() {
 		fromId := GraphMenu.GetString("from: ")
-		fromNode := graph.NewNode(fromId)
+		fromNode, err := Graph.GetNode(fromId)
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
 		toId := GraphMenu.GetString("to: ")
-		toNode := graph.NewNode(toId)
+		toNode, err := Graph.GetNode(toId)
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
 		weight, err := GraphMenu.GetInt("weight: ")
 		if err != nil {
 			fmt.Printf("error: %s\n", err.Error())

@@ -129,11 +129,11 @@ func (g *Graph) AddNode(node Node) error {
 	return nil
 }
 
-func (g *Graph) GetNode(id string) (*Node, error) {
+func (g *Graph) GetNode(id string) (Node, error) {
 	if node, ok := g.nodes[id]; ok {
-		return &node, nil
+		return node, nil
 	}
-	return nil, errors.New(ErrNodeNotPresent)
+	return Node{}, errors.New(ErrNodeNotPresent)
 }
 
 func (g *Graph) AddEdge(edge Edge) error {
