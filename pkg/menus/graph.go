@@ -8,7 +8,7 @@ import (
 )
 
 var GraphMenu *menu.Menu
-var Graph *graph.Graph
+var Graph graph.Graph
 
 func init() {
 	Graph = graph.NewGraph()

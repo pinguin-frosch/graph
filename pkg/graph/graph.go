@@ -52,6 +52,14 @@ type Edge struct {
 	weight int
 }
 
+func (e Edge) From() Node {
+	return e.from
+}
+
+func (e Edge) To() Node {
+	return e.to
+}
+
 // returns a new edge with the from and to fields swapped
 func (e Edge) ReversedEdge() Edge {
 	return Edge{e.to, e.from, e.weight}
@@ -82,24 +90,24 @@ func (g *Graph) EdgesFrom(node Node) []Edge {
 	return edges
 }
 
-func NewGraph() *Graph {
+func NewGraph() Graph {
 	g := Graph{}
 	g.nodes = make(map[string]Node)
 	g.edges = make(map[string]map[string]Edge)
-	return &g
+	return g
 }
 
-func NewGraphFromFile(filename string) (*Graph, error) {
+func NewGraphFromFile(filename string) (Graph, error) {
 	bytes, err := os.ReadFile(filename)
 	if err != nil {
-		return nil, err
+		return Graph{}, err
 	}
 	var g Graph
 	err = json.Unmarshal(bytes, &g)
 	if err != nil {
-		return nil, err
+		return Graph{}, err
 	}
-	return &g, nil
+	return g, nil
 }
 
 func (g *Graph) SaveGraphToFile() error {
