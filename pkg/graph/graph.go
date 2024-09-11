@@ -24,6 +24,10 @@ type Node struct {
 	id string
 }
 
+func (n *Node) Id() string {
+	return n.id
+}
+
 func NewNode(id string) Node {
 	return Node{id: id}
 }
@@ -58,6 +62,14 @@ func (e Edge) From() Node {
 
 func (e Edge) To() Node {
 	return e.to
+}
+
+func (e Edge) Weight() int {
+	return e.weight
+}
+
+func (e Edge) Key() string {
+	return fmt.Sprintf("%s|%s", e.from.id, e.to.id)
 }
 
 // returns a new edge with the from and to fields swapped
