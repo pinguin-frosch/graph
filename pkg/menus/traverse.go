@@ -22,11 +22,8 @@ func init() {
 		s, err := traverseManager.GetSequence(Graph, node)
 		if err != nil {
 			fmt.Printf("error: %s\n", err.Error())
-			fmt.Print("partial sequence: ")
-			s.Print()
 			return
 		}
-		fmt.Print("sequence: ")
 		s.Print()
 	})
 	TraverseMenu.AddOption("td", "use default traverse method", func() {
