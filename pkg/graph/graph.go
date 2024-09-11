@@ -86,6 +86,20 @@ func (g *Graph) GetEdgesFrom(node Node) []Edge {
 	return edges
 }
 
+// returns all nodes that are reachable from node
+func (g *Graph) GetNodesFrom(node Node) []Node {
+	edges := g.GetEdgesFrom(node)
+	nodes := make([]Node, 0, len(edges))
+	for _, edge := range edges {
+		nodes = append(nodes, edge.To)
+	}
+	return nodes
+}
+
+func (g *Graph) GetEdge(from, to Node) Edge {
+	return g.Edges[from.Id][to.Id]
+}
+
 func NewGraph() Graph {
 	g := Graph{}
 	g.Nodes = make(map[string]Node)
