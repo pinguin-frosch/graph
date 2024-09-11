@@ -16,32 +16,28 @@ var (
 )
 
 type Graph struct {
-	nodes map[string]Node
-	edges map[string]map[string]Edge
+	Nodes map[string]Node            `json:"nodes"`
+	Edges map[string]map[string]Edge `json:"edges"`
 }
 
 type Node struct {
-	id string
-}
-
-func (n *Node) Id() string {
-	return n.id
+	Id string `json:"id"`
 }
 
 func NewNode(id string) Node {
-	return Node{id: id}
+	return Node{Id: id}
 }
 
 // returns all nodes in the graph in ascending order by id
-func (g *Graph) Nodes() []Node {
-	nodes := make([]Node, len(g.nodes))
+func (g *Graph) GetAllNodes() []Node {
+	nodes := make([]Node, len(g.Nodes))
 	i := 0
-	for _, node := range g.nodes {
+	for _, node := range g.Nodes {
 		nodes[i] = node
 		i++
 	}
 	slices.SortFunc(nodes, func(a, b Node) int {
-		if a.id < b.id {
+		if a.Id < b.Id {
 			return -1
 		} else {
 			return 1
@@ -51,30 +47,18 @@ func (g *Graph) Nodes() []Node {
 }
 
 type Edge struct {
-	from   Node
-	to     Node
-	weight int
-}
-
-func (e Edge) From() Node {
-	return e.from
-}
-
-func (e Edge) To() Node {
-	return e.to
-}
-
-func (e Edge) Weight() int {
-	return e.weight
+	From   Node `json:"from"`
+	To     Node `json:"to"`
+	Weight int  `json:"weight"`
 }
 
 func (e Edge) Key() string {
-	return fmt.Sprintf("%s|%s", e.from.id, e.to.id)
+	return fmt.Sprintf("[%s|%s]", e.From.Id, e.To.Id)
 }
 
 // returns a new edge with the from and to fields swapped
 func (e Edge) ReversedEdge() Edge {
-	return Edge{e.to, e.from, e.weight}
+	return Edge{e.To, e.From, e.Weight}
 }
 
 func NewEdge(from, to Node, weight int) Edge {
@@ -82,8 +66,8 @@ func NewEdge(from, to Node, weight int) Edge {
 }
 
 // returns all edges that are reachable from node ordered by ascending weight
-func (g *Graph) EdgesFrom(node Node) []Edge {
-	edgesMap := g.edges[node.id]
+func (g *Graph) GetEdgesFrom(node Node) []Edge {
+	edgesMap := g.Edges[node.Id]
 	edges := make([]Edge, len(edgesMap))
 	i := 0
 	for _, edge := range edgesMap {
@@ -91,9 +75,9 @@ func (g *Graph) EdgesFrom(node Node) []Edge {
 		i++
 	}
 	slices.SortFunc(edges, func(a, b Edge) int {
-		if a.weight < b.weight {
+		if a.Weight < b.Weight {
 			return -1
-		} else if a.weight > b.weight {
+		} else if a.Weight > b.Weight {
 			return 1
 		} else {
 			return 0
@@ -104,8 +88,8 @@ func (g *Graph) EdgesFrom(node Node) []Edge {
 
 func NewGraph() Graph {
 	g := Graph{}
-	g.nodes = make(map[string]Node)
-	g.edges = make(map[string]map[string]Edge)
+	g.Nodes = make(map[string]Node)
+	g.Edges = make(map[string]map[string]Edge)
 	return g
 }
 
@@ -142,59 +126,59 @@ func (g *Graph) SaveGraphToFile() error {
 }
 
 func (g *Graph) AddNode(node Node) error {
-	if _, ok := g.nodes[node.id]; ok {
+	if _, ok := g.Nodes[node.Id]; ok {
 		return errors.New(ErrRepeatedNode)
 	}
-	g.nodes[node.id] = node
+	g.Nodes[node.Id] = node
 	return nil
 }
 
 func (g *Graph) GetNode(id string) (Node, error) {
-	if node, ok := g.nodes[id]; ok {
+	if node, ok := g.Nodes[id]; ok {
 		return node, nil
 	}
 	return Node{}, errors.New(ErrNodeNotPresent)
 }
 
 func (g *Graph) AddEdge(edge Edge) error {
-	from := edge.from
-	to := edge.to
+	from := edge.From
+	to := edge.To
 
-	if from.id == to.id {
+	if from.Id == to.Id {
 		return errors.New(ErrSelfEdge)
 	}
 
-	if _, err := g.GetNode(from.id); err != nil {
+	if _, err := g.GetNode(from.Id); err != nil {
 		return errors.New(ErrNodeNotPresent)
 	}
-	if _, err := g.GetNode(to.id); err != nil {
+	if _, err := g.GetNode(to.Id); err != nil {
 		return errors.New(ErrNodeNotPresent)
 	}
 
-	if fromMap, ok := g.edges[from.id]; ok {
-		fromMap[to.id] = edge
+	if fromMap, ok := g.Edges[from.Id]; ok {
+		fromMap[to.Id] = edge
 	} else {
-		g.edges[from.id] = make(map[string]Edge)
-		g.edges[from.id][to.id] = edge
+		g.Edges[from.Id] = make(map[string]Edge)
+		g.Edges[from.Id][to.Id] = edge
 	}
 
-	if toMap, ok := g.edges[to.id]; ok {
-		toMap[from.id] = edge.ReversedEdge()
+	if toMap, ok := g.Edges[to.Id]; ok {
+		toMap[from.Id] = edge.ReversedEdge()
 	} else {
-		g.edges[to.id] = make(map[string]Edge)
-		g.edges[to.id][from.id] = edge.ReversedEdge()
+		g.Edges[to.Id] = make(map[string]Edge)
+		g.Edges[to.Id][from.Id] = edge.ReversedEdge()
 	}
 
 	return nil
 }
 
 func (g *Graph) Print() {
-	nodes := g.Nodes()
+	nodes := g.GetAllNodes()
 	for _, node := range nodes {
-		fmt.Printf("%s: ", node.id)
-		edges := g.EdgesFrom(node)
+		fmt.Printf("%s: ", node.Id)
+		edges := g.GetEdgesFrom(node)
 		for _, edge := range edges {
-			fmt.Printf("%s(%d) ", edge.to.id, edge.weight)
+			fmt.Printf("%s(%d) ", edge.To.Id, edge.Weight)
 		}
 		fmt.Println()
 	}

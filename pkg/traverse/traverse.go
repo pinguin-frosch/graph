@@ -47,7 +47,7 @@ func NewSequence() Sequence {
 func (s *Sequence) Print() {
 	fmt.Printf("nodes: %d\nweight: %d\nsequence: ", len(s.Sequence), s.Distance)
 	for _, node := range s.Sequence {
-		fmt.Printf("%s ", node.Id())
+		fmt.Printf("%s ", node.Id)
 	}
 	fmt.Println()
 }

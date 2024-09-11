@@ -40,9 +40,9 @@ func (d Default) getSequence(g graph.Graph, from graph.Node) (Sequence, error) {
 		}
 		d.visitedEdges[edge.Key()]++
 		d.visitedEdges[edge.ReversedEdge().Key()]++
-		s.Distance += edge.Weight()
-		s.Sequence = append(s.Sequence, edge.To())
-		node = edge.To()
+		s.Distance += edge.Weight
+		s.Sequence = append(s.Sequence, edge.To)
+		node = edge.To
 	}
 	return s, nil
 }
@@ -50,9 +50,9 @@ func (d Default) getSequence(g graph.Graph, from graph.Node) (Sequence, error) {
 func (d *Default) CountTotalEdges(g graph.Graph) int {
 	total := 0
 	visited := make(map[string]bool)
-	nodes := g.Nodes()
+	nodes := g.GetAllNodes()
 	for _, node := range nodes {
-		edges := g.EdgesFrom(node)
+		edges := g.GetEdgesFrom(node)
 		for _, edge := range edges {
 			key := edge.Key()
 			keyReversed := edge.ReversedEdge().Key()
@@ -67,9 +67,9 @@ func (d *Default) CountTotalEdges(g graph.Graph) int {
 }
 
 func (d *Default) GetNextEdge(g graph.Graph, n graph.Node) (graph.Edge, error) {
-	candidates := g.EdgesFrom(n)
+	candidates := g.GetEdgesFrom(n)
 	if len(candidates) < 1 {
-		return graph.Edge{}, fmt.Errorf("node %s has no edges", n.Id())
+		return graph.Edge{}, fmt.Errorf("node %s has no edges", n.Id)
 	}
 	slices.SortFunc(candidates, func(a, b graph.Edge) int {
 		if d.visitedEdges[a.Key()] < d.visitedEdges[b.Key()] {
@@ -77,9 +77,9 @@ func (d *Default) GetNextEdge(g graph.Graph, n graph.Node) (graph.Edge, error) {
 		} else if d.visitedEdges[a.Key()] > d.visitedEdges[b.Key()] {
 			return 1
 		} else {
-			if a.Weight() < b.Weight() {
+			if a.Weight < b.Weight {
 				return -1
-			} else if a.Weight() > b.Weight() {
+			} else if a.Weight > b.Weight {
 				return 1
 			}
 		}
