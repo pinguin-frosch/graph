@@ -1,9 +1,36 @@
 package traverse
 
-import "graph/pkg/graph"
+import (
+	"errors"
+	"fmt"
+	"graph/pkg/graph"
+)
+
+var (
+	ErrNoTraverseAlgorithm = "no traverse algorithm has been set"
+)
 
 type Traverser interface {
 	getSequence(g graph.Graph, from graph.Node) (Sequence, error)
+}
+
+type TraverseManager struct {
+	traverser Traverser
+}
+
+func (tm *TraverseManager) GetSequence(g graph.Graph, from graph.Node) (Sequence, error) {
+	if tm.traverser == nil {
+		return Sequence{}, errors.New(ErrNoTraverseAlgorithm)
+	}
+	s, err := tm.traverser.getSequence(g, from)
+	if err != nil {
+		return s, err
+	}
+	return s, nil
+}
+
+func (tm *TraverseManager) SetTraverseAlgorithm(a Traverser) {
+	tm.traverser = a
 }
 
 type Sequence struct {
@@ -15,4 +42,9 @@ func NewSequence() Sequence {
 	s := Sequence{}
 	s.Sequence = make([]graph.Node, 0)
 	return s
+}
+
+func (s *Sequence) Print() {
+	// TODO: improve default print
+	fmt.Printf("s: %v\n", s)
 }

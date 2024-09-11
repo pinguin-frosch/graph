@@ -53,4 +53,7 @@ func init() {
 	GraphMenu.AddOption("p", "print graph", func() {
 		Graph.Print()
 	})
+	GraphMenu.AddOption("t", "graph traverse sub menu", func() {
+		TraverseMenu.Start()
+	})
 }

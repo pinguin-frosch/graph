@@ -18,11 +18,15 @@ func NewDefault() Default {
 	return d
 }
 
-func (d *Default) getSequence(g graph.Graph, from string) (Sequence, error) {
-	node, err := g.GetNode(from)
-	if err != nil {
-		return Sequence{}, err
-	}
+func (d *Default) reset() {
+	d.visitedEdges = make(map[string]int)
+	d.usedEdges = 0
+	d.totalEdges = 0
+}
+
+func (d Default) getSequence(g graph.Graph, from graph.Node) (Sequence, error) {
+	d.reset()
+	node := from
 	s := NewSequence()
 	s.Sequence = append(s.Sequence, node)
 	d.totalEdges = d.CountTotalEdges(g)
