@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"graph/pkg/graph"
+	"math"
 )
 
 var (
@@ -25,6 +26,25 @@ func (tm *TraverseManager) GetSequence(g graph.Graph, from graph.Node) (Sequence
 	s, err := tm.traverser.getSequence(g, from)
 	if err != nil {
 		return s, err
+	}
+	return s, nil
+}
+
+func (tm *TraverseManager) GetShortestSequence(g graph.Graph) (Sequence, error) {
+	if tm.traverser == nil {
+		return Sequence{}, errors.New(ErrNoTraverseAlgorithm)
+	}
+	nodes := g.GetAllNodes()
+	s := NewSequence()
+	s.Distance = math.MaxInt
+	for _, node := range nodes {
+		sequence, err := tm.traverser.getSequence(g, node)
+		if err != nil {
+			return s, err
+		}
+		if sequence.Distance < s.Distance {
+			s = sequence
+		}
 	}
 	return s, nil
 }

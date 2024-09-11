@@ -26,6 +26,14 @@ func init() {
 		}
 		s.Print()
 	})
+	TraverseMenu.AddOption("gss", "get shortest sequence", func() {
+		s, err := traverseManager.GetShortestSequence(Graph)
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
+		s.Print()
+	})
 	TraverseMenu.AddOption("td", "use default traverse method", func() {
 		d := traverse.NewDefault()
 		traverseManager.SetTraverseAlgorithm(d)
