@@ -46,6 +46,18 @@ func (g *Graph) GetAllNodes() []Node {
 	return nodes
 }
 
+func (g *Graph) GetAllEdges() []Edge {
+	nodes := g.GetAllNodes()
+	edges := make([]Edge, 0)
+	for _, node := range nodes {
+		es := g.GetEdgesFrom(node)
+		for _, edge := range es {
+			edges = append(edges, edge)
+		}
+	}
+	return edges
+}
+
 type Edge struct {
 	From   Node `json:"from"`
 	To     Node `json:"to"`

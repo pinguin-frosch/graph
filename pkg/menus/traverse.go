@@ -54,6 +54,20 @@ func init() {
 		}
 		s.Print()
 	})
+	TraverseMenu.AddOption("e", "traverse graph using euler method", func() {
+		fromId := GraphMenu.GetString("from: ")
+		from, err := Graph.GetNode(fromId)
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
+		s, err := traverse.Euler(Graph, from)
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
+		s.Print()
+	})
 	TraverseMenu.AddOption("td", "use default traverse method", func() {
 		d := traverse.NewDefault()
 		traverseManager.SetTraverseAlgorithm(d)
