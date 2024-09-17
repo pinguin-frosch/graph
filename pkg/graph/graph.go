@@ -198,6 +198,19 @@ func (g *Graph) AddEdge(edge Edge) error {
 	return nil
 }
 
+func (g *Graph) RemoveEdge(from, to Node) {
+	delete(g.Edges[from.Id], to.Id)
+	delete(g.Edges[to.Id], from.Id)
+}
+
+func (g *Graph) RemoveNode(node Node) {
+	edges := g.GetEdgesFrom(node)
+	for _, edge := range edges {
+		g.RemoveEdge(edge.From, edge.To)
+	}
+	delete(g.Nodes, node.Id)
+}
+
 func (g *Graph) Print() {
 	nodes := g.GetAllNodes()
 	for _, node := range nodes {

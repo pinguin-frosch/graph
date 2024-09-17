@@ -25,6 +25,11 @@ func init() {
 			return
 		}
 	})
+	GraphMenu.AddOption("nr", "remove node", func() {
+		id := GraphMenu.GetString("id: ")
+		node := graph.NewNode(id)
+		Graph.RemoveNode(node)
+	})
 	GraphMenu.AddOption("e", "add edge", func() {
 		fromId := GraphMenu.GetString("from: ")
 		fromNode, err := Graph.GetNode(fromId)
@@ -49,6 +54,21 @@ func init() {
 			fmt.Printf("error: %s\n", err.Error())
 			return
 		}
+	})
+	GraphMenu.AddOption("er", "remove edge", func() {
+		fromId := GraphMenu.GetString("from: ")
+		fromNode, err := Graph.GetNode(fromId)
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
+		toId := GraphMenu.GetString("to: ")
+		toNode, err := Graph.GetNode(toId)
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
+		Graph.RemoveEdge(fromNode, toNode)
 	})
 	GraphMenu.AddOption("p", "print graph", func() {
 		Graph.Print()
