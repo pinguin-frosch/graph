@@ -1,9 +1,14 @@
 package traverse
 
 import (
+	"errors"
 	"fmt"
 	"graph/pkg/collections"
 	"graph/pkg/graph"
+)
+
+var (
+	ErrGraphNotEulerian = "graph is not eulerian"
 )
 
 type eulerState struct {
@@ -27,7 +32,23 @@ func (es *eulerState) allEdgesVisited() bool {
 	return true
 }
 
+func isEulerianGraph(g graph.Graph) bool {
+	nodes := g.GetAllNodes()
+	for _, node := range nodes {
+		edges := g.GetEdgesFrom(node)
+		if len(edges) == 0 || len(edges)%2 == 1 {
+			return false
+		}
+	}
+	return true
+}
+
 func Euler(g graph.Graph, a graph.Node) (Sequence, error) {
+	// check if graph is Eulerian
+	if !isEulerianGraph(g) {
+		return Sequence{}, errors.New(ErrGraphNotEulerian)
+	}
+
 	// setup initial values
 	es := newEulerState()
 	edges := g.GetAllEdges()
