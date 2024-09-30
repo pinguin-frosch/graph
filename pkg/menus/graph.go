@@ -76,4 +76,10 @@ func init() {
 	GraphMenu.AddOption("t", "graph traverse sub menu", func() {
 		TraverseMenu.Start()
 	})
+	// FIXME: remove later
+	g, err := graph.NewGraphFromFile("graphs/grafo-clase.json")
+	if err != nil {
+		panic(err)
+	}
+	Graph = g
 }

@@ -88,6 +88,20 @@ func init() {
 		}
 		s.Print()
 	})
+	TraverseMenu.AddOption("dfs", "traverse graph using dfs", func() {
+		fromId := GraphMenu.GetString("from: ")
+		from, err := Graph.GetNode(fromId)
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
+		s, err := traverse.DfsTraverse(Graph, from)
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
+		fmt.Printf("s: %v\n", s)
+	})
 	TraverseMenu.AddOption("td", "use default traverse method", func() {
 		d := traverse.NewDefault()
 		traverseManager.SetTraverseAlgorithm(d)
