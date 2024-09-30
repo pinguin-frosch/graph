@@ -14,21 +14,29 @@ func (s *Stack[T]) Push(item T) {
 	s.data = append(s.data, item)
 }
 
-func (s *Stack[T]) Pop() T {
-	last := s.data[len(s.data)-1]
-	s.data = s.data[0 : len(s.data)-1]
-	return last
+func (s *Stack[T]) Pop() (T, bool) {
+	if s.Empty() {
+		var zero T
+		return zero, false
+	}
+	item := s.data[len(s.data)-1]
+	s.data = s.data[:len(s.data)-1]
+	return item, true
 }
 
-func (s *Stack[T]) Peek() T {
-	last := s.data[len(s.data)-1]
-	return last
+func (s *Stack[T]) Peek() (T, bool) {
+	if s.Empty() {
+		var zero T
+		return zero, false
+	}
+	item := s.data[len(s.data)-1]
+	return item, true
 }
 
-func (s *Stack[_]) Empty() bool {
+func (s *Stack[T]) Empty() bool {
 	return len(s.data) == 0
 }
 
-func (s *Stack[_]) Len() int {
+func (s *Stack[T]) Len() int {
 	return len(s.data)
 }

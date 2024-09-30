@@ -56,8 +56,8 @@ func Euler(g graph.Graph, a graph.Node) (Sequence, error) {
 		// there's nowhere to go, we need to go back
 		if len(validEdges) == 0 {
 			// add restriction
-			invalidNode := st.Pop()
-			previousNode := st.Peek()
+			invalidNode, _ := st.Pop()
+			previousNode, _ := st.Peek()
 			key := fmt.Sprintf("%d|%s|%s", st.Len(), previousNode, invalidNode)
 			es.invalidEdges[key] = true
 
@@ -82,7 +82,7 @@ func Euler(g graph.Graph, a graph.Node) (Sequence, error) {
 	// reconstruct the sequence from the stack
 	s := NewSequence()
 	for !st.Empty() {
-		lastNode := st.Pop()
+		lastNode, _ := st.Pop()
 		s.Sequence = append(s.Sequence, lastNode)
 	}
 	for i := 0; i < len(s.Sequence)-1; i++ {
