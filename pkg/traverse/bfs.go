@@ -28,12 +28,12 @@ func Bfs(g graph.Graph, start, end graph.Node) (Sequence, error) {
 	q := collections.NewQueue[graph.Node]()
 
 	// add starting node
-	q.Queue(start)
+	q.Enqueue(start)
 
 	var x graph.Node
 	for !q.Empty() {
 		// get first node on queue
-		x = q.Dequeue()
+		x, _ = q.Dequeue()
 
 		// found end node
 		if x.Id == end.Id {
@@ -46,7 +46,7 @@ func Bfs(g graph.Graph, start, end graph.Node) (Sequence, error) {
 			if !bs.nodes[node.Id].visited {
 				bs.nodes[node.Id].visited = true
 				bs.nodes[node.Id].prev = x
-				q.Queue(node)
+				q.Enqueue(node)
 			}
 		}
 	}
