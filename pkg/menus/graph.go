@@ -18,8 +18,12 @@ func init() {
 	})
 	GraphMenu.AddOption("n", "add node", func() {
 		id := GraphMenu.GetString("id: ")
-		node := graph.NewNode(id)
-		err := Graph.AddNode(node)
+		node, err := graph.NewNode(id)
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
+		err = Graph.AddNode(node)
 		if err != nil {
 			fmt.Printf("error: %s\n", err.Error())
 			return
@@ -27,7 +31,11 @@ func init() {
 	})
 	GraphMenu.AddOption("nr", "remove node", func() {
 		id := GraphMenu.GetString("id: ")
-		node := graph.NewNode(id)
+		node, err := graph.NewNode(id)
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
 		Graph.RemoveNode(node)
 	})
 	GraphMenu.AddOption("e", "add edge", func() {

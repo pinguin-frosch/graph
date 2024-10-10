@@ -8,10 +8,11 @@ import (
 
 func TestDefaultCountTotalEdges(t *testing.T) {
 	g := graph.NewGraph()
-	nodes := []graph.Node{
-		graph.NewNode("a"), graph.NewNode("b"), graph.NewNode("c"), graph.NewNode("d"),
-	}
-	for _, node := range nodes {
+	nodes := make([]graph.Node, 0)
+	ids := []string{"a", "b", "c", "d"}
+	for _, id := range ids {
+		node, _ := graph.NewNode(id)
+		nodes = append(nodes, node)
 		_ = g.AddNode(node)
 	}
 	expected := 0
