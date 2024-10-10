@@ -77,22 +77,25 @@ func (g *Graph) GetAllEdges() []Edge {
 }
 
 type Edge struct {
+	Id     int  `json:"id"`
 	From   Node `json:"from"`
 	To     Node `json:"to"`
 	Weight int  `json:"weight"`
 }
 
+// generates a key for the edge
 func (e Edge) Key() string {
-	return fmt.Sprintf("[%s|%s]", e.From.Id, e.To.Id)
+	return fmt.Sprintf("[%v|%v|%v]", e.Id, e.From.Id, e.To.Id)
 }
 
 // returns a new edge with the from and to fields swapped
 func (e Edge) ReversedEdge() Edge {
-	return Edge{e.To, e.From, e.Weight}
+	return Edge{e.Id, e.To, e.From, e.Weight}
 }
 
+// retuns a new edge, the id is generated when adding it to the graph
 func NewEdge(from, to Node, weight int) Edge {
-	return Edge{from, to, weight}
+	return Edge{0, from, to, weight}
 }
 
 // returns all edges that are reachable from node ordered by ascending weight
