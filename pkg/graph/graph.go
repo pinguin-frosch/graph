@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"math"
 	"os"
 	"slices"
 	"strings"
@@ -17,8 +18,8 @@ var (
 )
 
 type Graph struct {
-	Nodes map[string]Node            `json:"nodes"`
-	Edges map[string]map[string]Edge `json:"edges"`
+	Nodes map[string]Node                    `json:"nodes"`
+	Edges map[string]map[string]map[int]Edge `json:"edges"`
 }
 
 type Node struct {
@@ -100,12 +101,12 @@ func NewEdge(from, to Node, weight int) Edge {
 
 // returns all edges that are reachable from node ordered by ascending weight
 func (g *Graph) GetEdgesFrom(node Node) []Edge {
+	edges := make([]Edge, 0)
 	edgesMap := g.Edges[node.Id]
-	edges := make([]Edge, len(edgesMap))
-	i := 0
-	for _, edge := range edgesMap {
-		edges[i] = edge
-		i++
+	for _, edgeSubMap := range edgesMap {
+		for _, edge := range edgeSubMap {
+			edges = append(edges, edge)
+		}
 	}
 	slices.SortFunc(edges, func(a, b Edge) int {
 		if a.Weight < b.Weight {
@@ -130,13 +131,18 @@ func (g *Graph) GetNodesFrom(node Node) []Node {
 }
 
 func (g *Graph) GetEdge(from, to Node) Edge {
-	return g.Edges[from.Id][to.Id]
+	// FIXME: return shortest edge and error when not found
+	edges := g.Edges[from.Id][to.Id]
+	for _, edge := range edges {
+		return edge
+	}
+	return Edge{}
 }
 
 func NewGraph() Graph {
 	g := Graph{}
 	g.Nodes = make(map[string]Node)
-	g.Edges = make(map[string]map[string]Edge)
+	g.Edges = make(map[string]map[string]map[int]Edge)
 	return g
 }
 
@@ -202,18 +208,39 @@ func (g *Graph) AddEdge(edge Edge) error {
 		return errors.New(ErrNodeNotPresent)
 	}
 
-	if fromMap, ok := g.Edges[from.Id]; ok {
-		fromMap[to.Id] = edge
-	} else {
-		g.Edges[from.Id] = make(map[string]Edge)
-		g.Edges[from.Id][to.Id] = edge
+	// create the map for the from node
+	if _, ok := g.Edges[from.Id]; !ok {
+		g.Edges[from.Id] = make(map[string]map[int]Edge)
+	}
+	// create the map for the to node under the from node
+	if _, ok := g.Edges[from.Id][to.Id]; !ok {
+		g.Edges[from.Id][to.Id] = make(map[int]Edge)
 	}
 
-	if toMap, ok := g.Edges[to.Id]; ok {
-		toMap[from.Id] = edge.ReversedEdge()
-	} else {
-		g.Edges[to.Id] = make(map[string]Edge)
-		g.Edges[to.Id][from.Id] = edge.ReversedEdge()
+	// create the map for the to node
+	if _, ok := g.Edges[to.Id]; !ok {
+		g.Edges[to.Id] = make(map[string]map[int]Edge)
+	}
+	// create the map for the from node under the to node
+	if _, ok := g.Edges[to.Id][from.Id]; !ok {
+		g.Edges[to.Id][from.Id] = make(map[int]Edge)
+	}
+
+	// find a valid id and add the edge
+	i := 0
+	for {
+		if i >= math.MaxInt {
+			return fmt.Errorf("couldn't generate a valid id for the edge")
+		}
+		if _, okFrom := g.Edges[from.Id][to.Id][i]; !okFrom {
+			if _, okTo := g.Edges[to.Id][from.Id][i]; !okTo {
+				edge.Id = i
+				g.Edges[from.Id][to.Id][i] = edge
+				g.Edges[to.Id][from.Id][i] = edge.ReversedEdge()
+				break
+			}
+		}
+		i++
 	}
 
 	return nil
@@ -238,7 +265,7 @@ func (g *Graph) Print() {
 		fmt.Printf("%s: ", node.Id)
 		edges := g.GetEdgesFrom(node)
 		for _, edge := range edges {
-			fmt.Printf("%s(%d) ", edge.To.Id, edge.Weight)
+			fmt.Printf("%s[%d](%d) ", edge.To.Id, edge.Id, edge.Weight)
 		}
 		fmt.Println()
 	}
