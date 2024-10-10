@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"slices"
+	"strings"
 	"time"
 )
 
@@ -24,8 +25,25 @@ type Node struct {
 	Id string `json:"id"`
 }
 
-func NewNode(id string) Node {
-	return Node{Id: id}
+func NewNode(id string) (Node, error) {
+	copyId := id
+	id = strings.Trim(id, " ")
+	invalidChars := make([]string, 0)
+	for _, r := range id {
+		if r == '_' || r == '.' {
+			continue
+		}
+		if ('a' > r || r > 'z') && ('A' > r || r > 'Z') {
+			if !slices.Contains(invalidChars, string(r)) {
+				invalidChars = append(invalidChars, string(r))
+			}
+		}
+	}
+	if len(invalidChars) != 0 {
+		var zero Node
+		return zero, fmt.Errorf("invalid chars in id %v: %v", copyId, invalidChars)
+	}
+	return Node{Id: id}, nil
 }
 
 // returns all nodes in the graph in ascending order by id
