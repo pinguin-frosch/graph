@@ -22,6 +22,4 @@ func main() {
 
 	// Update cost
 	g.UpdateCost()
-
-	g.Print()
 }

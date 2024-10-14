@@ -99,10 +99,8 @@ func (g *Graph) AddAndConnection(parentId string, childIds ...string) bool {
 }
 
 func (g *Graph) CostPerNode(node *Node) map[string]float64 {
-	fmt.Printf("CostPerNode of %s\n", node.Id)
 	cost := make(map[string]float64)
 	if len(node.And.Nodes) > 0 {
-		fmt.Printf("And nodes\n")
 		childs := node.And.Nodes
 		childsIds := make([]string, 0, len(childs))
 		for _, child := range childs {
@@ -112,13 +110,11 @@ func (g *Graph) CostPerNode(node *Node) map[string]float64 {
 		pathSum := float64(0)
 		for _, child := range childs {
 			pathSum += child.Value + 1 // FIXME: use a non fixed value for the edge weight
-			fmt.Printf("%s has a value of %f\n", child.Id, child.Value+1)
 		}
 		cost[stringKey] = pathSum
 		node.And.Value = pathSum
 	}
 	if len(node.Or.Nodes) > 0 {
-		fmt.Printf("Or nodes\n")
 		childs := node.Or.Nodes
 		childsIds := make([]string, 0, len(childs))
 		for _, child := range childs {
@@ -128,7 +124,6 @@ func (g *Graph) CostPerNode(node *Node) map[string]float64 {
 		pathSums := make([]float64, 0, len(node.Or.Nodes))
 		for _, child := range childs {
 			pathSums = append(pathSums, child.Value+1)
-			fmt.Printf("%s has a value of %f\n", child.Id, child.Value+1)
 		}
 		minimumCost := math.MaxFloat64
 		for _, pathSum := range pathSums {
@@ -139,7 +134,6 @@ func (g *Graph) CostPerNode(node *Node) map[string]float64 {
 		cost[stringKey] = minimumCost
 		node.Or.Value = minimumCost
 	}
-	fmt.Println()
 	return cost
 }
 
@@ -178,10 +172,8 @@ func (g *Graph) UpdateCost() {
 				minimunCost = cost
 			}
 		}
-		fmt.Printf("%s old %f new %f\n", node.Id, node.Value, minimunCost)
 		// if minimunCost < node.Value {
 		node.Value = minimunCost
-		fmt.Printf("updated %s\n", node.Id)
 		// }
 	}
 }
