@@ -42,7 +42,7 @@ func Bfs(g graph.Graph, start, end graph.Node) (Sequence, error) {
 		}
 
 		// get all neighbours from x
-		nodes := g.GetNodesFrom(x)
+		nodes := g.GetNodes(x)
 		for _, node := range nodes {
 			if !bs.nodes[node.Id].visited {
 				bs.nodes[node.Id].visited = true

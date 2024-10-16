@@ -65,7 +65,7 @@ func Dijkstra(g graph.Graph, a, b graph.Node) (Sequence, error) {
 		}
 
 		// update estimates
-		nodesFromX := g.GetNodesFrom(x)
+		nodesFromX := g.GetNodes(x)
 		for _, y := range nodesFromX {
 			edge, ok := g.GetShortestEdge(x, y)
 			if !ok {
