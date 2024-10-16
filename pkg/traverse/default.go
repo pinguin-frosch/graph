@@ -52,7 +52,7 @@ func (d *Default) CountTotalEdges(g graph.Graph) int {
 	visited := make(map[string]bool)
 	nodes := g.GetAllNodes()
 	for _, node := range nodes {
-		edges := g.GetEdgesFrom(node)
+		edges := g.GetEdges(node)
 		for _, edge := range edges {
 			key := edge.Key()
 			keyReversed := edge.ReversedEdge().Key()
@@ -67,7 +67,7 @@ func (d *Default) CountTotalEdges(g graph.Graph) int {
 }
 
 func (d *Default) GetNextEdge(g graph.Graph, n graph.Node) (graph.Edge, error) {
-	candidates := g.GetEdgesFrom(n)
+	candidates := g.GetEdges(n)
 	if len(candidates) < 1 {
 		return graph.Edge{}, fmt.Errorf("node %s has no edges", n.Id)
 	}

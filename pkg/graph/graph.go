@@ -55,21 +55,23 @@ func (g *Graph) GetAllNodes() []Node {
 		nodes[i] = node
 		i++
 	}
-	slices.SortFunc(nodes, func(a, b Node) int {
-		if a.Id < b.Id {
-			return -1
-		} else {
-			return 1
-		}
-	})
+	slices.SortFunc(nodes, sortNodesById)
 	return nodes
+}
+
+var sortNodesById func(a, b Node) int = func(a, b Node) int {
+	if a.Id < b.Id {
+		return -1
+	} else {
+		return 1
+	}
 }
 
 func (g *Graph) GetAllEdges() []Edge {
 	nodes := g.GetAllNodes()
 	edges := make([]Edge, 0)
 	for _, node := range nodes {
-		es := g.GetEdgesFrom(node)
+		es := g.GetEdges(node)
 		for _, edge := range es {
 			edges = append(edges, edge)
 		}
@@ -100,7 +102,7 @@ func NewEdge(from, to Node, weight int) Edge {
 }
 
 // returns all edges that are reachable from node ordered by ascending weight
-func (g *Graph) GetEdgesFrom(node Node) []Edge {
+func (g *Graph) GetEdges(node Node) []Edge {
 	edges := make([]Edge, 0)
 	edgesMap := g.Edges[node.Id]
 	for _, edgeSubMap := range edgesMap {
@@ -108,21 +110,23 @@ func (g *Graph) GetEdgesFrom(node Node) []Edge {
 			edges = append(edges, edge)
 		}
 	}
-	slices.SortFunc(edges, func(a, b Edge) int {
-		if a.Weight < b.Weight {
-			return -1
-		} else if a.Weight > b.Weight {
-			return 1
-		} else {
-			return 0
-		}
-	})
+	slices.SortFunc(edges, sortEdgesByWeight)
 	return edges
+}
+
+var sortEdgesByWeight func(a, b Edge) int = func(a, b Edge) int {
+	if a.Weight < b.Weight {
+		return -1
+	} else if a.Weight > b.Weight {
+		return 1
+	} else {
+		return 0
+	}
 }
 
 // returns all nodes that are reachable from node
 func (g *Graph) GetNodesFrom(node Node) []Node {
-	edges := g.GetEdgesFrom(node)
+	edges := g.GetEdges(node)
 	nodes := make([]Node, 0, len(edges))
 	for _, edge := range edges {
 		nodes = append(nodes, edge.To)
@@ -130,13 +134,24 @@ func (g *Graph) GetNodesFrom(node Node) []Node {
 	return nodes
 }
 
-func (g *Graph) GetEdge(from, to Node) Edge {
-	// FIXME: return shortest edge and error when not found
+func (g *Graph) GetShortestEdge(from, to Node) (Edge, bool) {
+	var zero Edge
+	if len(g.GetEdges(from)) == 0 {
+		return zero, false
+	}
+	minWeight := math.MaxInt
 	edges := g.Edges[from.Id][to.Id]
 	for _, edge := range edges {
-		return edge
+		if edge.Weight < minWeight {
+			minWeight = edge.Weight
+		}
 	}
-	return Edge{}
+	for _, edge := range edges {
+		if edge.Weight == minWeight {
+			return edge, true
+		}
+	}
+	return zero, false
 }
 
 func NewGraph() Graph {
@@ -246,15 +261,27 @@ func (g *Graph) AddEdge(edge Edge) error {
 	return nil
 }
 
-func (g *Graph) RemoveEdge(from, to Node) {
+// Removes first edge found between from and to nodes with given weight value
+func (g *Graph) RemoveEdgeWithWeight(from, to Node, weight int) {
+	for id, edge := range g.Edges[from.Id][to.Id] {
+		if edge.Weight == weight {
+			delete(g.Edges[from.Id][to.Id], id)
+			delete(g.Edges[to.Id][from.Id], id)
+			return
+		}
+	}
+}
+
+// Removes all edges between from and to nodes
+func (g *Graph) RemoveEdges(from, to Node) {
 	delete(g.Edges[from.Id], to.Id)
 	delete(g.Edges[to.Id], from.Id)
 }
 
 func (g *Graph) RemoveNode(node Node) {
-	edges := g.GetEdgesFrom(node)
+	edges := g.GetEdges(node)
 	for _, edge := range edges {
-		g.RemoveEdge(edge.From, edge.To)
+		g.RemoveEdges(edge.From, edge.To)
 	}
 	delete(g.Nodes, node.Id)
 }
@@ -263,7 +290,7 @@ func (g *Graph) Print() {
 	nodes := g.GetAllNodes()
 	for _, node := range nodes {
 		fmt.Printf("%s: ", node.Id)
-		edges := g.GetEdgesFrom(node)
+		edges := g.GetEdges(node)
 		for _, edge := range edges {
 			fmt.Printf("%s[%d](%d) ", edge.To.Id, edge.Id, edge.Weight)
 		}

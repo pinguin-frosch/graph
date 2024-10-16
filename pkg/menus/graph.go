@@ -63,7 +63,7 @@ func init() {
 			return
 		}
 	})
-	GraphMenu.AddOption("er", "remove edge", func() {
+	GraphMenu.AddOption("err", "remove edges between two nodes", func() {
 		fromId := GraphMenu.GetString("from: ")
 		fromNode, err := Graph.GetNode(fromId)
 		if err != nil {
@@ -76,7 +76,27 @@ func init() {
 			fmt.Printf("error: %s\n", err.Error())
 			return
 		}
-		Graph.RemoveEdge(fromNode, toNode)
+		Graph.RemoveEdges(fromNode, toNode)
+	})
+	GraphMenu.AddOption("erw", "remove edge with weight", func() {
+		fromId := GraphMenu.GetString("from: ")
+		fromNode, err := Graph.GetNode(fromId)
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
+		toId := GraphMenu.GetString("to: ")
+		toNode, err := Graph.GetNode(toId)
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
+		weight, err := GraphMenu.GetInt("weight: ")
+		if err != nil {
+			fmt.Printf("error: %s\n", err.Error())
+			return
+		}
+		Graph.RemoveEdgeWithWeight(fromNode, toNode, weight)
 	})
 	GraphMenu.AddOption("p", "print graph", func() {
 		Graph.Print()

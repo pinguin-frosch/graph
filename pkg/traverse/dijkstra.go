@@ -1,6 +1,7 @@
 package traverse
 
 import (
+	"fmt"
 	"graph/pkg/graph"
 	"math"
 	"slices"
@@ -66,7 +67,10 @@ func Dijkstra(g graph.Graph, a, b graph.Node) (Sequence, error) {
 		// update estimates
 		nodesFromX := g.GetNodesFrom(x)
 		for _, y := range nodesFromX {
-			edge := g.GetEdge(x, y)
+			edge, ok := g.GetShortestEdge(x, y)
+			if !ok {
+				return Sequence{}, fmt.Errorf("couldn't get shortest edge between %v and %v", x.Id, y.Id)
+			}
 			xValue := ds.nodes[x.Id].value
 			yValue := ds.nodes[y.Id].value
 			if (xValue + edge.Weight) < yValue {

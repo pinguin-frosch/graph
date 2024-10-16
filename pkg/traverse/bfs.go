@@ -1,6 +1,7 @@
 package traverse
 
 import (
+	"fmt"
 	"graph/pkg/collections"
 	"graph/pkg/graph"
 	"slices"
@@ -56,7 +57,11 @@ func Bfs(g graph.Graph, start, end graph.Node) (Sequence, error) {
 	s.Sequence = append(s.Sequence, x)
 	for x.Id != start.Id {
 		prev := bs.nodes[x.Id].prev
-		s.Distance += g.GetEdge(x, prev).Weight
+		edge, ok := g.GetShortestEdge(x, prev)
+		if !ok {
+			return Sequence{}, fmt.Errorf("couldn't get shortest edge between %v and %v", x.Id, prev.Id)
+		}
+		s.Distance += edge.Weight
 		x = prev
 		s.Sequence = append(s.Sequence, x)
 	}

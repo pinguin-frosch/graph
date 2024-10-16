@@ -35,7 +35,7 @@ func (es *eulerState) allEdgesVisited() bool {
 func isEulerianGraph(g graph.Graph) bool {
 	nodes := g.GetAllNodes()
 	for _, node := range nodes {
-		edges := g.GetEdgesFrom(node)
+		edges := g.GetEdges(node)
 		if len(edges) == 0 || len(edges)%2 == 1 {
 			return false
 		}
@@ -63,7 +63,7 @@ func Euler(g graph.Graph, a graph.Node) (Sequence, error) {
 	x := a
 	for !es.allEdgesVisited() {
 		// get valid edges to go to the next node
-		edges := g.GetEdgesFrom(x)
+		edges := g.GetEdges(x)
 		validEdges := make([]graph.Edge, 0, len(edges))
 		for _, edge := range edges {
 			if !es.visitedEdges[edge.Key()] {
@@ -83,8 +83,12 @@ func Euler(g graph.Graph, a graph.Node) (Sequence, error) {
 			es.invalidEdges[key] = true
 
 			// mark the edge as not visited again
-			es.visitedEdges[g.GetEdge(previousNode, invalidNode).Key()] = false
-			es.visitedEdges[g.GetEdge(previousNode, invalidNode).ReversedEdge().Key()] = false
+			edge, ok := g.GetShortestEdge(previousNode, invalidNode)
+			if !ok {
+				return Sequence{}, fmt.Errorf("couldn't get shortest edge between %v and %v", previousNode.Id, invalidNode.Id)
+			}
+			es.visitedEdges[edge.Key()] = false
+			es.visitedEdges[edge.ReversedEdge().Key()] = false
 
 			// go back
 			x = previousNode
@@ -109,7 +113,11 @@ func Euler(g graph.Graph, a graph.Node) (Sequence, error) {
 	for i := 0; i < len(s.Sequence)-1; i++ {
 		a := s.Sequence[i]
 		b := s.Sequence[i+1]
-		s.Distance += g.GetEdge(a, b).Weight
+		edge, ok := g.GetShortestEdge(a, b)
+		if !ok {
+			return Sequence{}, fmt.Errorf("couldn't get shortest edge between %v and %v", a.Id, b.Id)
+		}
+		s.Distance += edge.Weight
 	}
 
 	return s, nil
