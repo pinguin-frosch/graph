@@ -16,6 +16,11 @@ type Node struct {
 	Id string `json:"id"`
 }
 
+func (g *Graph) Degree(node Node) int {
+	edges := g.GetEdges(node)
+	return len(edges)
+}
+
 // returns a new node, or an error if the id is invalid
 func NewNode(id string) (Node, error) {
 	copyId := id
@@ -48,6 +53,28 @@ func (g *Graph) GetAllNodes() []Node {
 	}
 	slices.SortFunc(nodes, sortNodesById)
 	return nodes
+}
+
+// returns all odd nodes in the graph in ascending order by id
+func (g *Graph) GetAllOddNodes() []Node {
+	oddNodes := make([]Node, 0)
+	for _, node := range g.GetAllNodes() {
+		if g.Degree(node)%2 == 1 {
+			oddNodes = append(oddNodes, node)
+		}
+	}
+	return oddNodes
+}
+
+// returns all deadend nodes in the graph in ascending order by id
+func (g *Graph) GetAllDeadendNodes() []Node {
+	deadendNodes := make([]Node, 0)
+	for _, node := range g.GetAllNodes() {
+		if g.Degree(node) == 1 {
+			deadendNodes = append(deadendNodes, node)
+		}
+	}
+	return deadendNodes
 }
 
 var sortNodesById func(a, b Node) int = func(a, b Node) int {

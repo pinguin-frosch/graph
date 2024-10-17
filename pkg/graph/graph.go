@@ -21,6 +21,23 @@ func NewGraph() Graph {
 	return g
 }
 
+// makes a copy of the graph
+func (g Graph) Clone() Graph {
+	clone := NewGraph()
+	for _, node := range g.GetAllNodes() {
+		clone.AddNode(node)
+	}
+	addedEdges := make(map[string]bool)
+	for _, edge := range g.GetAllEdges() {
+		if !addedEdges[edge.Key()] && !addedEdges[edge.ReversedEdge().Key()] {
+			clone.AddEdge(edge)
+			addedEdges[edge.Key()] = true
+			addedEdges[edge.ReversedEdge().Key()] = true
+		}
+	}
+	return clone
+}
+
 // initializes a graph from given file
 func NewGraphFromFile(filename string) (Graph, error) {
 	bytes, err := os.ReadFile(filename)

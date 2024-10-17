@@ -43,9 +43,85 @@ func isEulerianGraph(g graph.Graph) bool {
 	return true
 }
 
+type Pair struct {
+	L graph.Node
+	R graph.Node
+}
+
+func generatePairs(nodes []graph.Node) []Pair {
+	pairs := make([]Pair, 0)
+	for i := 0; i < len(nodes)-1; i++ {
+		for j := i + 1; j < len(nodes); j++ {
+			pair := Pair{L: nodes[i], R: nodes[j]}
+			pairs = append(pairs, pair)
+		}
+	}
+	return pairs
+}
+
+func (p Pair) Different(other Pair) bool {
+	return p.L.Id != other.L.Id && p.L.Id != other.R.Id && p.R.Id != other.L.Id && p.R.Id != other.R.Id
+}
+
+func generatePairing(pair Pair, pairs []Pair) []Pair {
+	pairing := make([]Pair, 0)
+
+	// add pair to the pairing
+	pairing = append(pairing, pair)
+
+	// remove pairs that contains elements from the current pair
+	filteredPairs := make([]Pair, 0)
+	for _, p := range pairs {
+		if pair.Different(p) {
+			filteredPairs = append(filteredPairs, p)
+		}
+	}
+
+	// repeat for the filtered pairs
+	for _, p := range filteredPairs {
+		subPairing := generatePairing(p, filteredPairs)
+		pairing = append(pairing, subPairing...)
+	}
+
+	return pairing
+}
+
+func generateAllPairings(pairs []Pair) [][]Pair {
+	// store all the pairings
+	pairings := make([][]Pair, 0)
+
+	// add pairing for each pair
+	for _, pair := range pairs {
+		pairing := generatePairing(pair, pairs)
+		pairings = append(pairings, pairing)
+	}
+
+	return pairings
+}
+
+func eulerizeGraph(g *graph.Graph) {
+	// duplicate edges of deadend nodes
+	deadendNodes := g.GetAllDeadendNodes()
+	for _, deadendNode := range deadendNodes {
+		g.AddEdge(g.GetEdges(deadendNode)[0])
+	}
+
+	// build pairs of the odd nodes
+	oddNodes := g.GetAllOddNodes()
+	pairs := generatePairs(oddNodes)
+
+	// create the different ways to join the odd nodes without repetition
+	allPairings := generateAllPairings(pairs)
+	fmt.Printf("pairings: %v\n", allPairings)
+}
+
 func Euler(g graph.Graph, a graph.Node) (Sequence, error) {
+	// clone to avoid modifying the original graph
+	g = g.Clone()
+
 	// check if graph is Eulerian
 	if !isEulerianGraph(g) {
+		eulerizeGraph(&g)
 		return Sequence{}, errors.New(ErrGraphNotEulerian)
 	}
 
